@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { ListarFilmesComponent } from './listar-filmes/listar-filmes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,15 +11,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { FilmeListarComponent } from './filmes/filme-listar/filme-listar.component';
+import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: ListarFilmesComponent},
+      { path: '', component: FilmeListarComponent },
     ]),
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -30,18 +37,22 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
-    MatBottomSheetModule
-    
+    MatBottomSheetModule,
+    HttpClientModule,
+    AppRoutingModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    NgxPaginationModule,
+    NgbModule,
+    MatListModule 
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    ListarFilmesComponent,
+    FilmeListarComponent,
+    FilmeDetalheComponent
   ],
   bootstrap: [ AppComponent ]
 })
-
-
 
 export class AppModule { }

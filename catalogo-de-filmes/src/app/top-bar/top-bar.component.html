@@ -1,8 +1,7 @@
 <a [routerLink]="['/']">
-  <h1>
-    CATÁLOGO DE FILMES
-  </h1>
+    <h1>
+        CATÁLOGO DE FILMES
+    </h1>
 </a>
-<a [routerLink]="['/cart']" class="button fancy-button"><i class="material-icons">exit_to_app</i>
-  SAIR
-</a>
+<button mat-flat-button color="accent" [routerLink]="['/cart']" selected>
+    <i class="material-icons whiteIcon">exit_to_app</i> SAIR </button>

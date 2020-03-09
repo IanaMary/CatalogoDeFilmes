@@ -1,0 +1,33 @@
+h4 {
+    color: #1976d2;
+    font-size: 14px;
+}
+li {
+    color: #1976d2;
+    font-size: 14px;
+} 
+.mat-flat-button {
+    margin: 5px;
+}
+.example-container {
+    position: relative;
+    padding: 5px;
+}
+.example-card {
+   display: grid;
+}
+.example-header-image {
+   
+    background-size: cover;
+}
+  
+.example-header-image {
+    background-size: cover;
+}
+
+.container img {
+    max-width:200px;
+    max-height:100px;
+    width: auto;
+    height: auto;
+}

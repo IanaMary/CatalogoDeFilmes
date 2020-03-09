@@ -1,0 +1,35 @@
+
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+            <img mat-card-avatar src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}"
+                alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-title>{{filme.title}}</mat-card-title>
+        <mat-card-subtitle>{{filme.original_title}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <samp>Categoria</samp>
+        <ul>
+            <li *ngFor="let genre of filme.genres">
+                {{genre.name}}
+            </li>
+        </ul>
+        <samp>Data de Lançamento</samp>
+        <ul>
+            <li>
+                {{filme.release_date}}
+            </li>
+        </ul>
+        <samp>Sinopse</samp>
+        <ul>
+            <li>
+                {{filme.overview}}
+            </li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-flat-button [routerLink]="['/']" selected>
+            <i class="material-icons whiteIcon">arrow_back</i>VOLTAR</button>
+    </mat-card-actions>
+</mat-card>
