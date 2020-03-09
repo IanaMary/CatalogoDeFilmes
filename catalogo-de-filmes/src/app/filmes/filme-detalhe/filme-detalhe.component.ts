@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../filme.service';
 import { Filme } from '../filme';
@@ -10,9 +10,8 @@ import { Filme } from '../filme';
   styleUrls: ['./filme-detalhe.component.css']
 })
 
-export class FilmeDetalheComponent implements OnInit {
+export class FilmeDetalheComponent {
   filme: Filme;
-  isLoadingResults = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,13 +20,13 @@ export class FilmeDetalheComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
     this.getFilme(this.route.snapshot.params['id']);
   }
 
   getFilme(id: string) {
     this.filmeService.sendFindByIdRequest(id).subscribe((data: Filme) => {
       this.filme = data;
-      this.isLoadingResults = false;
     });
   }
 }

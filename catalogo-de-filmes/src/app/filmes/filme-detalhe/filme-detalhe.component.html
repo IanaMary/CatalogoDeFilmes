@@ -1,15 +1,13 @@
-
 <mat-card>
     <mat-card-header>
         <div mat-card-avatar class="example-header-image">
-            <img mat-card-avatar src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}"
-                alt="Photo of a Shiba Inu">
+            <img mat-card-avatar src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}">
         </div>
         <mat-card-title>{{filme.title}}</mat-card-title>
         <mat-card-subtitle>{{filme.original_title}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <samp>Categoria</samp>
+        <samp>Categorias</samp>
         <ul>
             <li *ngFor="let genre of filme.genres">
                 {{genre.name}}

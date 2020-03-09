@@ -1,11 +1,11 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListarFilmesComponent } from '../listar-filmes/listar-filmes.component';
-import { DetalhesFilmeComponent } from '../detalhes-filme/detalhes-filme.component';
+import { FilmeListarComponent } from './filme-listar/filme-listar.component';
+import { FilmeDetalheComponent } from './filme-detalhe/filme-detalhe.component';
 
 const filmesRoutes: Routes = [
-  { path: 'filmes',  component: ListarFilmesComponent, data: { animation: 'filmes' } },
-  { path: 'filme/:id', component: DetalhesFilmeComponent, data: { animation: 'filme' } }
+  { path: 'filmes',  component: FilmeListarComponent, data: { animation: 'filmes' } },
+  { path: 'filme/:id', component: FilmeDetalheComponent, data: { animation: 'filme' } }
 ];
 
 @NgModule({
