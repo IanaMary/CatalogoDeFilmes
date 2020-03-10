@@ -14,8 +14,7 @@ export class FilmeListarComponent {
   filmes = FILMES;
   totalPages: number;
   totalResults: number;
-  page: number = 1;
-  currentPage: number = 1;
+  pagina: number = 1;
   displayedColumns: string[] = ['title', 'detalhes'];
   dataSource: any;
 
@@ -25,17 +24,19 @@ export class FilmeListarComponent {
 
 
   ngOnInit() {
-    this.filmeService.sendGetPopularRequest(this.page).subscribe((data: any[]) => {
+    // INICIALIZANDO O  LISTAR FILME COMPONENT
+    this.filmeService.sendGetPopularRequest(this.pagina).subscribe((data: any[]) => {
       this.filmes = data['results'];
       this.totalPages = data['total_pages'];
       this.totalResults = data['total_results'];
-      this.page = data['page'];
+      this.pagina = data['page'];
       this.dataSource = new MatTableDataSource(this.filmes);
     })
   }
 
-  pageChanged(event) {
-    this.filmeService.sendGetPopularRequest(event).subscribe((data: any[]) => {
+  // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
+  pageChanged(paginaAtual: number) {
+    this.filmeService.sendGetPopularRequest(paginaAtual).subscribe((data: any[]) => {
       this.totalPages = data['total_pages'];
       this.totalResults = data['total_results'];
       this.filmes = data['results'];
@@ -43,12 +44,11 @@ export class FilmeListarComponent {
     })
   }
 
+  // EXECUTADA PARA ATUALIZAR A PÁGINA DE LISTAR FILME DE ACORDO O NOME DO FILME PASSADO
   applyFilter(event: Event) {
     var filterValue = (event.target as HTMLInputElement).value;
     if (filterValue != "") {
       this.filmeService.sendSearchByName(filterValue).subscribe((data: any[]) => {
-        this.totalPages = data['total_pages'];
-        this.totalResults = data['total_results'];
         this.filmes = data['results'];
         this.dataSource = new MatTableDataSource(this.filmes);
       })

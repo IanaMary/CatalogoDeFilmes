@@ -16,16 +16,18 @@ export class FilmeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public sendGetPopularRequest(page: number) {
-    return this.httpClient.get(this.REST_API_SERVER + this.GET_POPULAR + '?api_key=' + this.REST_API_KEY + '&language=pt-BR&page=' + page );
+  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
+  public sendGetPopularRequest(pagina: number) {
+    return this.httpClient.get(this.REST_API_SERVER + this.GET_POPULAR + '?api_key=' + this.REST_API_KEY + '&language=pt-BR&page=' + pagina );
   }
 
-
+  // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ UM FILME COM BASE NO NOME FORNECIDO
   public sendSearchByName(nomeDoFilme: string) {
     return this.httpClient.get(this.REST_API_SERVER + this.SEARCH_MOVIE + '?api_key=' + this.REST_API_KEY + '&language=pt-BR&query=' + nomeDoFilme );
 
   }
 
+  // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ OS DETALHES DE UM FILME COM BASE NO ID DO FILME FORNECIDO
   public sendFindByIdRequest(filmeId: string) {
     return this.httpClient.get(this.REST_API_SERVER + this.GET_DETAILS + filmeId + '?api_key=' + this.REST_API_KEY + '&language=pt_BR');
   }
