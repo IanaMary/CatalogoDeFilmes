@@ -7,8 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    
+  ) {
+    var alto = document.getElementById("alto-contraste");
+    alto.classList.toggle('alto-contraste');
+  }
 
-  ngOnInit() {}
+  ngOnInit(
+   
+  ) {}
+
+  muda() {
+    console.log("ddddddddddddd");
+    var alto = document.getElementById("alto-contraste");
+    alto.classList.toggle('alto-contraste');
+  }
+ 
 
 }
