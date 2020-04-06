@@ -1,9 +1,8 @@
-
 <h2>
     FILMES
 </h2>
-<mat-form-field>
-    <input  class="alto-contraste" id="alto-contraste" matInput (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
+<mat-form-field  class="alto-contraste" id="alto-contraste">
+    <input  matInput (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
 </mat-form-field>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">

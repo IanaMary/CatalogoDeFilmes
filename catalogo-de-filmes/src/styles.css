@@ -1,8 +1,4 @@
-/* Global Styles */
-
-
- div {
-  margin: 0;
+div {
   font-family: 'Roboto', Arial, sans-serif;
   color: #1976d2;
   box-sizing: border-box;
@@ -10,17 +6,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.container {
-  display: grid;
-  flex-direction: row;
+body {
+  margin: 0;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+}
 
 router-outlet + *  {
   padding: 0 16px;
 }
 
-/* Text */
 
 h4 {
   font-size: 14px;
@@ -32,19 +30,20 @@ li {
 
 h1 {
   font-size: 32px;
-  font-weight: lighter;
+  text-decoration: none;
 }
 
 h2 {
   font-size: 20px;
+}
+
+h1, h2 {
   font-weight: lighter;
 }
 
 p {
   font-size: 14px;
 }
-
-/* Hyperlink */
 
 a {
   cursor: pointer;
@@ -88,36 +87,30 @@ label {
   border-color:  #1976d2;
 }
 
-
-
-
-/* Fancy Button */
-
-
-
-/* Top Bar */
-
 app-top-bar {
   width: 100%;
-  height: 65px;
+  height: 68px;
   background-color: #1976d2;
-  padding: 15px;
+  padding: 16px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
 }
 
 app-top-bar h1 {
   color: white;
-  text-align: justify;
+  text-align: center;
+  height: 15px;
 }
 
 /* Checkout Cart, Shipping Prices */
 
 .cart-item, .shipping-item {
   width: 100%;
-  display: grid;
+  min-width: 400px;
+  max-width: 450px;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 16px 32px;
@@ -137,9 +130,3 @@ i {
 .d {
   color:  black;
 }
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
