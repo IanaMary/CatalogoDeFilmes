@@ -19,7 +19,6 @@ export class TopBarComponent implements OnInit {
   ) {}
 
   muda() {
-    console.log("ddddddddddddd");
     var alto = document.getElementById("alto-contraste");
     alto.classList.toggle('alto-contraste');
   }

@@ -1,9 +1,13 @@
 <h2>
     FILMES
 </h2>
-<mat-form-field  class="alto-contraste" id="alto-contraste">
-    <input  matInput (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
-</mat-form-field>
+
+<form>
+    <input class="alto-contraste" id="alto-contraste"  (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
+</form>
+
+<br>
+
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
         <ng-container matColumnDef="title">
@@ -20,6 +24,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <ngb-pagination class="alto-contraste" id="alto-contraste"  class="d-flex justify-content-center" [(page)]="pagina" (pageChange)="pageChanged($event)" [collectionSize]="totalPages" [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
+    <ngb-pagination class="alto-contraste" id="alto-contraste"  
+    class="d-flex justify-content-center" [(page)]="pagina" (pageChange)="pageChanged($event)" [collectionSize]="totalPages" [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
     </ngb-pagination>
 </div>

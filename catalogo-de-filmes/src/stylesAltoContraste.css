@@ -8,20 +8,24 @@ a {
   color: black;
 }
 
-/* Input */
+.alto-contraste input {
+  color: black;
+  border-bottom-color: black;
+
+}
 
 .alto-contraste mat-form-field  {
   border-color: black;
   color: black;
 }
 
-
-/* Button */
 .alto-contraste button {
   color: black;
   border-color: black;
 
 }
+
+
 
 .alto-contraste app-top-bar {
   background-color: black;
@@ -38,6 +42,21 @@ a {
 .alto-contraste th {
   color: black;
 }
+
+
+.alto-contraste ngb-pagination a:any-link {
+  color: black;
+  background-color: white;
+}
+.alto-contraste ngb-pagination .page-item.active .page-link  {
+    border-color: black;
+    background-color: black;
+    color: white;
+}
+
+
+
+
 
 /*
 Copyright Google LLC. All Rights Reserved.
