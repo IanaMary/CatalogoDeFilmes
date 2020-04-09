@@ -7,7 +7,15 @@ div {
 }
 
 body {
-  margin: 0;
+  font-size: 16px;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 1.25em;
+}
+
+.mat-card-subtitle, .mat-card-content {
+  font-size: 0.875em;
 }
 
 input:focus{
@@ -39,28 +47,23 @@ router-outlet + *  {
 
 
 h4 {
-  font-size: 14px;
+  font-size: 0.875em;
 }
 
 li {
-  font-size: 14px;
+  font-size: 0.875em;
 } 
 
 h1 {
-  font-size: 32px;
   text-decoration: none;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 
 h1, h2 {
   font-weight: lighter;
-}
-
-p {
-  font-size: 14px;
 }
 
 a {
@@ -82,7 +85,7 @@ button:focus{
   align-items: center;
   padding: 8px 16px;
   border-radius: 2px;
-  font-size: 14px;
+  font-size: 0.875em;
   cursor: pointer;
   background-color: white;
   color: #1976d2;
@@ -91,12 +94,12 @@ button:focus{
 
 app-top-bar {
   width: 100%;
-  height: 68px;
+  height: 100%;
   background-color: #1976d2;
   padding: 16px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -105,6 +108,16 @@ app-top-bar h1 {
   text-align: center;
   height: 15px;
 }
+
+app-top-bar button {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-size: 0.625em;
+}
+
+
 
 /* Checkout Cart, Shipping Prices */
 
@@ -136,6 +149,11 @@ ngb-pagination  .page-item.active .page-link {
   background-color: #1976d2;
   color: white;
 }
+
+td, th {
+  color: #1976d2;
+}
+
 
 
 
