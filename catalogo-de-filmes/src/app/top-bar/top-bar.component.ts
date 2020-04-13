@@ -14,7 +14,8 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit(
 
-  ) { this.altoContraste(); }
+  ) { 
+    this.altoContraste(); }
 
   altoContraste() {
     document.getElementById("acessibilidade").classList.toggle('alto-contraste');
@@ -24,25 +25,22 @@ export class TopBarComponent implements OnInit {
     var tag = document.getElementsByTagName("body")[0];
     let fonteString = window.getComputedStyle(tag, null).getPropertyValue('font-size');
     let fontNumber = parseFloat(fonteString);
-     //AUMENTAR A FONTE 
+   
+    //AUMENTAR A FONTE 
     if( (number == 1) && (fontNumber < 25)) {
       fontNumber++;
-      tag.style.fontSize = fontNumber + "px"
-      console.log( tag.style.fontSize);
+      tag.style.fontSize = fontNumber + "px";
     }
 
     //REDEFINIR A FONTE
     else if(number == 0) {
-      fontNumber++;
       tag.style.fontSize = "16px";
-      console.log( tag.style.fontSize);
     }
 
      //DIMINUIR A FONTE 
      else if( (number == -1) && (fontNumber > 12)) {
       fontNumber--;
-      tag.style.fontSize = fontNumber + "px"
-      console.log( tag.style.fontSize);
+      tag.style.fontSize = fontNumber + "px";
     }
    
   }

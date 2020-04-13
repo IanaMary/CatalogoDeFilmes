@@ -1,39 +1,39 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>{{filme.title}}</mat-card-title>
-        <mat-card-subtitle>{{filme.original_title}}</mat-card-subtitle>
+        <mat-card-title tabindex="0">{{filme.title}}</mat-card-title>
+        <mat-card-subtitle tabindex="0">{{filme.original_title}}</mat-card-subtitle>
         <div mat-card-avatar class="example-header-image">
             <img mat-card-avatar src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}">
         </div>
     </mat-card-header>
     <mat-card-content>
         <div>
-            <samp>Categorias</samp>
+            <samp tabindex="0" >Categorias</samp>
             <ul>
-                <li *ngFor="let genre of filme.genres">
+                <li tabindex="0" *ngFor="let genre of filme.genres">
                     {{genre.name}}
                 </li>
             </ul>
         </div>
         <div *ngIf="filme.release_date">
-            <samp>Data de Lançamento</samp>
+            <samp tabindex="0" >Data de Lançamento</samp>
             <ul>
-                <li>
+                <li tabindex="0">
                     {{filme.release_date}}
                 </li>
             </ul>
         </div>
         <div *ngIf="filme.overview">
-            <samp>Sinopse</samp>
+            <samp tabindex="0">Sinopse</samp>
             <ul>
-                <li>
+                <li tabindex="0">
                     {{filme.overview}}
                 </li>
             </ul>
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button  [routerLink]="['/']" >
+        <button tabindex="0" [routerLink]="['/']" >
             <i class="material-icons whiteIcon">arrow_back</i>VOLTAR</button>
     </mat-card-actions>
 </mat-card>
