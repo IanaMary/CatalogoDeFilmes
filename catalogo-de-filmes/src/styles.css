@@ -6,6 +6,7 @@ div {
   color: #1976d2;
 }
 
+
 body {
   font-size: 16px;
 }
@@ -92,6 +93,19 @@ button:focus{
   border-color:  #1976d2;
 }
 
+select {
+  display: inline;
+  align-items: center;
+  cursor: pointer;
+  border-color: #1976d2;
+  font-size: 1.0em;
+  color: #1976d2;
+}
+
+samp {
+  color: #1976d2;
+}
+
 app-top-bar {
   width: 100%;
   height: 100%;
@@ -99,7 +113,7 @@ app-top-bar {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
 }
 

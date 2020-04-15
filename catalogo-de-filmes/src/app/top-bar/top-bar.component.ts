@@ -7,25 +7,30 @@ import { element } from 'protractor';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  
-
   constructor(
   ) {}
 
   ngOnInit(
 
-  ) { 
-    this.altoContraste(); }
+  ) {
+    document.getElementById("acessibilidade").classList.toggle("alto-contraste");
+  }
 
   altoContraste() {
-    document.getElementById("acessibilidade").classList.toggle('alto-contraste');
+    document.getElementById("acessibilidade").classList.toggle("alto-contraste");
+    if(localStorage.getItem("alto") == "desativo") {
+      localStorage.setItem("alto", "ativo");
+    }
+    else {
+      localStorage.setItem("alto", "desativo");
+    }
   }
 
   fonte (number: Number) {
-    var tag = document.getElementsByTagName("body")[0];
-    let fonteString = window.getComputedStyle(tag, null).getPropertyValue('font-size');
+    let tag = document.getElementsByTagName("body")[0];
+    let fonteString = window.getComputedStyle(tag, null).getPropertyValue("font-size");
     let fontNumber = parseFloat(fonteString);
-   
+
     //AUMENTAR A FONTE 
     if( (number == 1) && (fontNumber < 25)) {
       fontNumber++;
@@ -38,11 +43,12 @@ export class TopBarComponent implements OnInit {
     }
 
      //DIMINUIR A FONTE 
-     else if( (number == -1) && (fontNumber > 12)) {
+    else if( (number == -1) && (fontNumber > 12)) {
       fontNumber--;
       tag.style.fontSize = fontNumber + "px";
     }
-   
-  }
 
+    localStorage.setItem("fonte", tag.style.fontSize);
+
+  }
 }

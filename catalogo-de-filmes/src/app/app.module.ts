@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilmeListarComponent } from './filmes/filme-listar/filme-listar.component';
 import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
 
+
 @NgModule({
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@
     </mat-card-header>
     <mat-card-content>
         <div>
-            <samp tabindex="0" >Categorias</samp>
+            <samp tabindex="0">Categorias</samp>
             <ul>
                 <li tabindex="0" *ngFor="let genre of filme.genres">
                     {{genre.name}}
@@ -16,7 +16,7 @@
             </ul>
         </div>
         <div *ngIf="filme.release_date">
-            <samp tabindex="0" >Data de Lançamento</samp>
+            <samp tabindex="0">Data de Lançamento</samp>
             <ul>
                 <li tabindex="0">
                     {{filme.release_date}}
@@ -33,7 +33,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button tabindex="0" [routerLink]="['/']" >
+        <button tabindex="0" [routerLink]="['/']">
             <i class="material-icons whiteIcon">arrow_back</i>VOLTAR</button>
     </mat-card-actions>
 </mat-card>

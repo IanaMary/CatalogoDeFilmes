@@ -48,10 +48,20 @@ a {
   color: black;
   background-color: white;
 }
+
 .alto-contraste ngb-pagination .page-item.active .page-link  {
     border-color: black;
     background-color: black;
     color: white;
+}
+
+.alto-contraste select {
+  border-color: black;
+  color: black;
+}
+
+.alto-contraste samp {
+  color: black;
 }
 
 

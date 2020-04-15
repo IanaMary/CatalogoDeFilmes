@@ -2,6 +2,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FILMES } from '../mock-filmes';
 import { FilmeService } from '../filme.service';
+import { Idioma } from 'src/app/idiomas/idioma';
+import { IdiomaService } from 'src/app/idiomas/idioma.service';
 
 @Component({
   selector: 'app-filme-listar',
@@ -17,30 +19,40 @@ export class FilmeListarComponent {
   pagina: number = 1;
   displayedColumns: string[] = ['title', 'detalhes'];
   dataSource: any;
+  idiomaSelecionado: string = "pt-BR";
+  idiomas: any[];
 
   constructor(
-    private filmeService: FilmeService
+    private filmeService: FilmeService,
+    private idiomaService: IdiomaService
   ) { }
 
 
   ngOnInit() {
+
     // INICIALIZANDO O  LISTAR FILME COMPONENT
-    this.filmeService.sendGetPopularRequest(this.pagina).subscribe((data: any[]) => {
+    this.filmeService.sendGetPopularRequest(this.pagina, this.idiomaSelecionado).subscribe((data: any[]) => {
       this.filmes = data['results'];
       this.totalPages = data['total_pages'];
       this.totalResults = data['total_results'];
-      this.pagina = data['page'];
-      this.dataSource = new MatTableDataSource(this.filmes);
+    }),
+
+    this.idiomaService.sendGetIdioma().subscribe((data: any[]) => {
+      this.idiomas = data;
     })
+
   }
 
   // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
   pageChanged(paginaAtual: number) {
-    this.filmeService.sendGetPopularRequest(paginaAtual).subscribe((data: any[]) => {
-      this.totalPages = data['total_pages'];
-      this.totalResults = data['total_results'];
+    this.filmeService.sendGetPopularRequest(paginaAtual,  this.idiomaSelecionado).subscribe((data: any[]) => {
       this.filmes = data['results'];
-      this.dataSource = new MatTableDataSource(this.filmes);
+    })
+  }
+
+  onChange(idioma: string) {
+    this.filmeService.sendGetPopularRequest(this.pagina, idioma).subscribe((data: any[]) => {
+      this.filmes = data['results'];
     })
   }
 
@@ -50,11 +62,9 @@ export class FilmeListarComponent {
     if (filterValue != "") {
       this.filmeService.sendSearchByName(filterValue).subscribe((data: any[]) => {
         this.filmes = data['results'];
-        this.dataSource = new MatTableDataSource(this.filmes);
       })
     } else {
       this.pageChanged(1);
     }
   }
-
 }
