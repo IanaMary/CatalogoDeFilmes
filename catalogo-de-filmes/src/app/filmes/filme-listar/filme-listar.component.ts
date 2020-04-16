@@ -4,6 +4,7 @@ import { FILMES } from '../mock-filmes';
 import { FilmeService } from '../filme.service';
 import { Idioma } from 'src/app/idiomas/idioma';
 import { IdiomaService } from 'src/app/idiomas/idioma.service';
+import { Filme } from '../filme';
 
 @Component({
   selector: 'app-filme-listar',
@@ -13,7 +14,7 @@ import { IdiomaService } from 'src/app/idiomas/idioma.service';
 
 export class FilmeListarComponent {
   @Output() pageChange: EventEmitter<number>;
-  filmes = FILMES;
+  filmes: Filme[];
   totalPages: number;
   totalResults: number;
   pagina: number = 1;
@@ -30,6 +31,10 @@ export class FilmeListarComponent {
 
   ngOnInit() {
 
+    if(localStorage.getItem("idioma")) {
+      this.idiomaSelecionado = localStorage.getItem("idioma");
+    }
+
     // INICIALIZANDO O  LISTAR FILME COMPONENT
     this.filmeService.sendGetPopularRequest(this.pagina, this.idiomaSelecionado).subscribe((data: any[]) => {
       this.filmes = data['results'];
@@ -40,6 +45,7 @@ export class FilmeListarComponent {
     this.idiomaService.sendGetIdioma().subscribe((data: any[]) => {
       this.idiomas = data;
     })
+
 
   }
 
@@ -53,6 +59,7 @@ export class FilmeListarComponent {
   onChange(idioma: string) {
     this.filmeService.sendGetPopularRequest(this.pagina, idioma).subscribe((data: any[]) => {
       this.filmes = data['results'];
+      localStorage.setItem("idioma", idioma);
     })
   }
 

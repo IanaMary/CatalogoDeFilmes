@@ -5,9 +5,9 @@
     <mat-card-content>
         <hr>
         <samp>
-            ESCOLHA O PÁIS
+            ESCOLHA O IDIOMA
         </samp>
-        <select id="idioma" (change)="onChange($event.target.value)">
+        <select (change)="onChange($event.target.value)">
             <option *ngFor="let idioma of idiomas" value="{{idioma}}">{{idioma}}</option>
         </select>
         <hr>
