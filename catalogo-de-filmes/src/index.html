@@ -13,16 +13,12 @@
 </head>
 
 <body class="mat-typography">
-  <div class="alto-contraste" class="fonte" id="acessibilidade">
-  
+  <div  class="fonte" id="acessibilidade">
     <app-root></app-root>
   </div>
 </body>
 </html>
 <script>
-  if(localStorage.getItem("alto") == "true") {
-    document.getElementById("acessibilidade").classList.toggle("alto-contraste");
-  }
   if(localStorage.getItem("fonte")) {
     document.getElementsByTagName("body")[0].style.fontSize = localStorage.getItem("fonte");
   }

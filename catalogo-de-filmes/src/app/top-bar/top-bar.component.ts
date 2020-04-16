@@ -13,23 +13,15 @@ export class TopBarComponent implements OnInit {
   ngOnInit(
 
   ) {
-    document.getElementById("acessibilidade").classList.toggle("alto-contraste");
-    console.log(this.altoConstrateAtivo);
-    if(localStorage.getItem("alto") == "true") {
+    if(localStorage.getItem("alto") && localStorage.getItem("alto") == "true") {
+      document.getElementById("acessibilidade").classList.toggle("alto-contraste");
       this.altoConstrateAtivo = true;
-      localStorage.setItem("alto", "true");
-    }
-    else {
-      this.altoConstrateAtivo = false;
-      localStorage.setItem("alto", "false");
     }
   }
 
   altoContraste() {
     document.getElementById("acessibilidade").classList.toggle("alto-contraste");
-    this.altoConstrateAtivo = !this.altoConstrateAtivo;
-    localStorage.setItem("alto", this.altoConstrateAtivo.toString());
-    console.log(localStorage.getItem("alto"));
+    localStorage.setItem("alto", (!this.altoConstrateAtivo).toString());
   }
 
   fonte (number: Number) {
