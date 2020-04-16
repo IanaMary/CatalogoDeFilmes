@@ -1,3 +1,13 @@
+img {
+  float: right;
+  border: transparent thin solid;
+  padding: 5px;
+  margin: 0px 10px 10px 0;
+  max-width:400px;
+  max-height:150px;
+  height: auto;
+}
+
 div {
   font-family: 'Roboto', Arial, sans-serif;
   box-sizing: border-box;
@@ -6,17 +16,8 @@ div {
   color: #1976d2;
 }
 
-
 body {
   font-size: 16px;
-}
-
-.mat-card-header .mat-card-title {
-  font-size: 1.25em;
-}
-
-.mat-card-subtitle, .mat-card-content {
-  font-size: 0.875em;
 }
 
 input:focus{
@@ -30,8 +31,6 @@ input {
   border-left-style: none;
   border-right-style: none;
   width: 100%;
-  min-width: 400px;
-  max-width: 600px;
   display: flex;
   flex-direction: row;
   color: #1976d2;
@@ -61,6 +60,7 @@ h1 {
 
 h2 {
   font-size: 1.25em;
+  color: #1976d2;
 }
 
 h1, h2 {
@@ -131,30 +131,7 @@ app-top-bar button {
   font-size: 0.625em;
 }
 
-
-
-/* Checkout Cart, Shipping Prices */
-
-.cart-item, .shipping-item {
-  width: 100%;
-  min-width: 400px;
-  max-width: 450px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 16px 32px;
-  margin-bottom: 8px;
-  border-radius: 2px;
-  background-color: #EEEEEE;
-}
-
 i {
-  color: #1976d2;
-}
-
-
-
-.mat-cell, .mat-header-cell {
   color: #1976d2;
 }
 

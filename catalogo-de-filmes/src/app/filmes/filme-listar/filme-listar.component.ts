@@ -31,7 +31,6 @@ export class FilmeListarComponent {
 
     if(localStorage.getItem("idioma")) {
       this.idiomaSelecionado = localStorage.getItem("idioma");
-      console.log(this.idiomaSelecionado);
     }
 
     // INICIALIZANDO O  LISTAR FILME COMPONENT

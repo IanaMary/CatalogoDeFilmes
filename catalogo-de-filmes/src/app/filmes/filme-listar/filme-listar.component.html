@@ -1,25 +1,25 @@
-<mat-card>
-    <mat-card-header>
-        <mat-card-title tabindex="0">FILMES</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <hr>
-        <samp>
-            ESCOLHA O IDIOMA
-        </samp>
-        <select [(ngModel)]="idiomaSelecionado" (change)="onChange($event.target.value)">
-            <option *ngFor="let idioma of idiomas" value="{{idioma}}">{{idioma}}</option>
-        </select>
-        <hr>
-        <form>
-            <input tabindex="0" (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
-        </form>
-        <hr>
-        <table>
+<div>
+    <h2 tabindex="0">FILMES</h2>
+    <hr>
+    <samp tabindex="0">
+        ESCOLHA O IDIOMA
+    </samp>
+    <select tabindex="0" [(ngModel)]="idiomaSelecionado" (change)="onChange($event.target.value)">
+        <option tabindex="0" *ngFor="let idioma of idiomas" value="{{idioma}}">{{idioma}}</option>
+    </select>
+</div>
+<hr>
+<form>
+    <input tabindex="0" (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
+    <br>
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <th tabindex="0">TÍTULO </th>
-                <th></th>
+                <th tabindex="0" scope="col">TÍTULO</th>
+                <th scope="col"></th>
             </tr>
+        </thead>
+        <tbody>
             <tr *ngFor="let filme of filmes">
                 <td tabindex="0">{{filme.title}}</td>
                 <td>
@@ -28,10 +28,11 @@
                     </button>
                 </td>
             </tr>
-        </table>
-        <ngb-pagination tabindex="0" class="d-flex justify-content-center" [(page)]="pagina"
-            (pageChange)="pageChanged($event)" [collectionSize]="totalPages" [maxSize]="5" [rotate]="true"
-            [boundaryLinks]="true">
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <ngb-pagination tabindex="0" [(page)]="pagina" (pageChange)="pageChanged($event)" [collectionSize]="totalPages"
+            [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
         </ngb-pagination>
-    </mat-card-content>
-</mat-card>
+    </div>
+</form>
