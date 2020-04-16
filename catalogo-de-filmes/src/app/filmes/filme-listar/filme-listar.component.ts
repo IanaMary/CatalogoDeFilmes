@@ -1,6 +1,4 @@
-import { MatTableDataSource } from '@angular/material/table';
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FILMES } from '../mock-filmes';
 import { FilmeService } from '../filme.service';
 import { Idioma } from 'src/app/idiomas/idioma';
 import { IdiomaService } from 'src/app/idiomas/idioma.service';
@@ -21,7 +19,7 @@ export class FilmeListarComponent {
   displayedColumns: string[] = ['title', 'detalhes'];
   dataSource: any;
   idiomaSelecionado: string = "pt-BR";
-  idiomas: any[];
+  idiomas: Idioma[];
 
   constructor(
     private filmeService: FilmeService,
@@ -33,6 +31,7 @@ export class FilmeListarComponent {
 
     if(localStorage.getItem("idioma")) {
       this.idiomaSelecionado = localStorage.getItem("idioma");
+      console.log(this.idiomaSelecionado);
     }
 
     // INICIALIZANDO O  LISTAR FILME COMPONENT
@@ -60,6 +59,7 @@ export class FilmeListarComponent {
     this.filmeService.sendGetPopularRequest(this.pagina, idioma).subscribe((data: any[]) => {
       this.filmes = data['results'];
       localStorage.setItem("idioma", idioma);
+      this.idiomaSelecionado = idioma;
     })
   }
 

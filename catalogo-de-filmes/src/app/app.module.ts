@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilmeListarComponent } from './filmes/filme-listar/filme-listar.component';
 import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.comp
     MatCardModule,
     NgxPaginationModule,
     NgbModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-top-bar',
@@ -7,6 +6,7 @@ import { element } from 'protractor';
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
+  altoConstrateAtivo: boolean = false;
   constructor(
   ) {}
 
@@ -14,16 +14,22 @@ export class TopBarComponent implements OnInit {
 
   ) {
     document.getElementById("acessibilidade").classList.toggle("alto-contraste");
+    console.log(this.altoConstrateAtivo);
+    if(localStorage.getItem("alto") == "true") {
+      this.altoConstrateAtivo = true;
+      localStorage.setItem("alto", "true");
+    }
+    else {
+      this.altoConstrateAtivo = false;
+      localStorage.setItem("alto", "false");
+    }
   }
 
   altoContraste() {
     document.getElementById("acessibilidade").classList.toggle("alto-contraste");
-    if(localStorage.getItem("alto") == "desativo") {
-      localStorage.setItem("alto", "ativo");
-    }
-    else {
-      localStorage.setItem("alto", "desativo");
-    }
+    this.altoConstrateAtivo = !this.altoConstrateAtivo;
+    localStorage.setItem("alto", this.altoConstrateAtivo.toString());
+    console.log(localStorage.getItem("alto"));
   }
 
   fonte (number: Number) {
