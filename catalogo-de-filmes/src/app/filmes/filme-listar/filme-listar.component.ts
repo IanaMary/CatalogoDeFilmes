@@ -11,14 +11,12 @@ import { Filme } from '../filme';
 })
 
 export class FilmeListarComponent {
-  @Output() pageChange: EventEmitter<number>;
   filmes: Filme[];
   totalPages: number;
   totalResults: number;
   pagina: number = 1;
   displayedColumns: string[] = ['title', 'detalhes'];
-  dataSource: any;
-  idiomaSelecionado: string = "pt-BR";
+  idiomaSelecionado: string;
   idiomas: Idioma[];
 
   constructor(
@@ -29,8 +27,12 @@ export class FilmeListarComponent {
 
   ngOnInit() {
 
-    if(localStorage.getItem("idioma")) {
+    // ATULIZA/VERIFICA O LOCAL STORAGE DO IDIOMA
+    if (localStorage.getItem("idioma")) {
       this.idiomaSelecionado = localStorage.getItem("idioma");
+    } else {
+      this.idiomaSelecionado = "pt-BR";
+      localStorage.setItem("idioma", this.idiomaSelecionado);
     }
 
     // INICIALIZANDO O  LISTAR FILME COMPONENT
@@ -40,20 +42,21 @@ export class FilmeListarComponent {
       this.totalResults = data['total_results'];
     }),
 
+    // INICIALIZANDO O  LISTA DE IDIOMAS
     this.idiomaService.sendGetIdioma().subscribe((data: any[]) => {
       this.idiomas = data;
     })
-
 
   }
 
   // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
   pageChanged(paginaAtual: number) {
-    this.filmeService.sendGetPopularRequest(paginaAtual,  this.idiomaSelecionado).subscribe((data: any[]) => {
+    this.filmeService.sendGetPopularRequest(paginaAtual, this.idiomaSelecionado).subscribe((data: any[]) => {
       this.filmes = data['results'];
     })
   }
 
+  // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE IDIOMA
   onChange(idioma: string) {
     this.filmeService.sendGetPopularRequest(this.pagina, idioma).subscribe((data: any[]) => {
       this.filmes = data['results'];
