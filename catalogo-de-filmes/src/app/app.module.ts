@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     NgxPaginationModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   declarations: [
     AppComponent,
@@ -31,4 +32,4 @@ import { FormsModule } from '@angular/forms';
   bootstrap: [ AppComponent ]
 })
 
-export class AppModule { }
+export class AppModule {}

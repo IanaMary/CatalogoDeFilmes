@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ModuleWithComponentFactories } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../filme.service';
 import { Filme } from '../filme';
@@ -11,12 +11,14 @@ import { Filme } from '../filme';
 
 export class FilmeDetalheComponent {
   filme: Filme;
+  
 
   constructor(
     private route: ActivatedRoute,
     private filmeService: FilmeService,
     
-  ) { }
+  ) {     
+  }
 
   ngOnInit() {
    
@@ -26,16 +28,9 @@ export class FilmeDetalheComponent {
 
   // ATUALIZA A PÁGINA DE DETALHES DO FILME DE ACORDO COM O ID CAPTURADO
   getFilme(id: string) {
-    this.filmeService.sendFindByIdRequest(id).subscribe((data: Filme) => { 
-      data.release_date = this.formatadaData(data.release_date);
+    this.filmeService.sendFindByIdRequest(id).subscribe((data: Filme) => {  
       this.filme = data;
     });
-  }
-  
-  // FORMATA A DATA DE LANÇAMENTO NO FORMATO PT-BR
-  formatadaData(data: string) {
-    var arrayDtata  = data.split('-');
-    return arrayDtata.reverse().join('/');
   }
   
 }
