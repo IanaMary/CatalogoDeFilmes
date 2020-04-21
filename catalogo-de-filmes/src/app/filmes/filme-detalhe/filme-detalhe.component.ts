@@ -6,7 +6,7 @@ import { Filme } from '../filme';
 @Component({
   selector: 'app-filme-detalhe',
   templateUrl: './filme-detalhe.component.html',
-  styleUrls: ['./filme-detalhe.component.css']
+  styleUrls: ['./filme-detalhe.component.sass']
 })
 
 export class FilmeDetalheComponent {
