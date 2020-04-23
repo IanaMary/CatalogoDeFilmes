@@ -2,7 +2,9 @@
     <img tabindex="0" src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}" alt="Smiley face">
 </div>
 <div>
-    <samp tabindex="0">Título</samp>
+    <samp tabindex="0">
+        {{'CATALOGO.TITULO-FILME' | translate }}
+    </samp>
     <ul>
         <li tabindex="0">
             {{filme.title}}
@@ -10,7 +12,9 @@
     </ul>
 </div>
 <div>
-    <samp tabindex="0">Título Original</samp>
+    <samp tabindex="0">
+        {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
+    </samp>
     <ul>
         <li tabindex="0">
             {{filme.original_title}}
@@ -18,7 +22,9 @@
     </ul>
 </div>
 <div>
-    <samp tabindex="0">Categorias</samp>
+    <samp tabindex="0">
+        {{'CATALOGO.CATEGORIA-FILME' | translate }}
+    </samp>
     <ul>
         <li tabindex="0" *ngFor="let genre of filme.genres">
             {{genre.name}}
@@ -26,15 +32,19 @@
     </ul>
 </div>
 <div *ngIf="filme.release_date">
-    <samp tabindex="0">Data de Lançamento</samp>
+    <samp tabindex="0">
+        {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
+    </samp>
     <ul>
         <li tabindex="0">
-            {{ filme.release_date | date }}
+            {{ filme.release_date }}
         </li>
     </ul>
 </div>
 <div *ngIf="filme.overview">
-    <samp tabindex="0">Sinopse</samp>
+    <samp tabindex="0">
+        {{'CATALOGO.SINOPSE-FILME' | translate }}
+    </samp>
     <ul>
         <li tabindex="0">
             {{filme.overview}}
@@ -43,5 +53,5 @@
 </div>
 <button tabindex="0" [routerLink]="['/']">
     <i class="material-icons whiteIcon">arrow_back</i>
-    VOLTAR
+    {{'CATALOGO.TITULO-BOTAO-VOLTAR' | translate }}
 </button>

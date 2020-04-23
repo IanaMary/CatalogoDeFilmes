@@ -1,6 +1,6 @@
 <div>
     <h1 tabindex="0">  
-        CATÁLOGO DE FILMES 
+        {{ 'CATALOGO.TITULO-TOPBAR' | translate }} 
     </h1>
 </div>
 
@@ -10,25 +10,42 @@
     <button tabindex="0"  (click)="altoContraste()">
         <i class="material-icons whiteIcon" >
             invert_colors
-        </i>ALTO CONTRASTE
+        </i> {{'CATALOGO.TITULO-BOTAO-ALTO-CONTRASTE' | translate }} 
     </button>
-    
     <button tabindex="0" (click)="fonte(1)">
         <i class="material-icons whiteIcon">
-            zoom_in
-        </i>AUMENTAR FONTE
+            add_circle_outline
+        </i> {{ 'CATALOGO.TITULO-BOTAO-AUMENTAR-FONTE' | translate }} 
     </button>
     
     <button tabindex="0" (click)="fonte(0)">
         <i  class="material-icons whiteIcon">
-            check
-        </i>REDEFINIR FONTE
+            block
+        </i>{{ 'CATALOGO.TITULO-BOTAO-RESTAURAR-FONTE' | translate }} 
     </button>
 
     <button tabindex="0" (click)="fonte(-1)">
         <i class="material-icons whiteIcon">
-            zoom_out
-        </i>DIMINUIR FONTE
+            remove_circle_outline
+        </i>{{ 'CATALOGO.TITULO-BOTAO-DIMINUIR-FONTE' | translate }} 
+    </button>
+
+    <button tabindex="0" (click)="idioma(1)">
+        <i class="material-icons whiteIcon">
+            language
+        </i> {{ 'CATALOGO.TITULO-BOTAO-IDIOMA' | translate }}  pt-BR
+    </button>
+
+    <button tabindex="0" (click)="idioma(0)">
+        <i class="material-icons whiteIcon">
+            language
+        </i>{{ 'CATALOGO.TITULO-BOTAO-IDIOMA' | translate }}  en-US
+    </button>
+
+    <button tabindex="0" (click)="idioma(-1)">
+        <i class="material-icons whiteIcon">   
+            language
+        </i>{{ 'CATALOGO.TITULO-BOTAO-IDIOMA' | translate }}  es-ES
     </button>
 </div>
 

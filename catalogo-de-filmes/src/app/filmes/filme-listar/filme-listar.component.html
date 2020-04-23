@@ -1,21 +1,18 @@
 <div>
-    <h2 tabindex="0">FILMES</h2>
-    <hr>
-    <samp tabindex="0">
-        ESCOLHA O IDIOMA
-    </samp>
-    <select tabindex="0" [(ngModel)]="idiomaSelecionado" (change)="onChange($event.target.value)">
-        <option tabindex="0" *ngFor="let idioma of idiomas" value="{{idioma}}">{{idioma}}</option>
-    </select>
+    <h2 tabindex="0">
+        {{ 'CATALOGO.TITULO-LISTAR' | translate }}
+    </h2>
 </div>
 <hr>
 <form>
-    <input tabindex="0" (keyup)="applyFilter($event)" placeholder="BUSCAR FILME">
+    <input tabindex="0" (keyup)="applyFilter($event)" placeholder=" {{ 'CATALOGO.BUSCAR-FILME' | translate }}">
     <br>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th tabindex="0" scope="col">TÍTULO</th>
+                <th tabindex="0" scope="col">
+                    {{ 'CATALOGO.TITULO-TABELA' | translate }}
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -24,7 +21,8 @@
                 <td tabindex="0">{{filme.title}}</td>
                 <td>
                     <button tabindex="0" routerLink="/detalhes-filme/{{filme.id}}">
-                        <i class="material-icons whiteIcon">view_headline</i>DETALHES
+                        <i class="material-icons whiteIcon">view_headline</i>
+                        {{ 'CATALOGO.TITULO-BOTAO-DETALHES' | translate }}
                     </button>
                 </td>
             </tr>

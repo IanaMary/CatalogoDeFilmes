@@ -10,6 +10,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilmeListarComponent } from './filmes/filme-listar/filme-listar.component';
 import { FilmeDetalheComponent } from './filmes/filme-detalhe/filme-detalhe.component';
 import { FormsModule } from '@angular/forms';
+import { MomentModule } from 'angular2-moment';
+import {HttpClient} from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
+
 
 
 @NgModule({
@@ -22,6 +33,14 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     HttpClientModule,
+    MomentModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     AppComponent,

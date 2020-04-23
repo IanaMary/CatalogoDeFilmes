@@ -3,6 +3,9 @@ import { FilmeService } from '../filme.service';
 import { Idioma } from 'src/app/idiomas/idioma';
 import { IdiomaService } from 'src/app/idiomas/idioma.service';
 import { Filme } from '../filme';
+import {TranslateService} from '@ngx-translate/core';
+import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
+
 
 @Component({
   selector: 'app-filme-listar',
@@ -19,49 +22,53 @@ export class FilmeListarComponent {
   idiomaSelecionado: string;
   idiomas: Idioma[];
 
+  refreshEvento: any = null;
+
+
   constructor(
     private filmeService: FilmeService,
-    private idiomaService: IdiomaService
+    private idiomaService: IdiomaService,
+    public translate: TranslateService
   ) { }
 
 
   ngOnInit() {
 
-    // ATULIZA/VERIFICA O LOCAL STORAGE DO IDIOMA
-    if (localStorage.getItem("idioma")) {
+    if(localStorage.getItem("idioma")) {
+      console.log("aaa");
       this.idiomaSelecionado = localStorage.getItem("idioma");
-    } else {
+    }else {
       this.idiomaSelecionado = "pt-BR";
-      localStorage.setItem("idioma", this.idiomaSelecionado);
     }
 
+    this.refreshEvento = EventEmitterService.get('refreshProdutos').subscribe(e => this.carregaProdutos());
+
+  
     // INICIALIZANDO O  LISTAR FILME COMPONENT
-    this.filmeService.sendGetPopularRequest(this.pagina, this.idiomaSelecionado).subscribe((data: any[]) => {
+    this.filmeService.sendGetPopularRequest(this.pagina).subscribe((data: any[]) => {
       this.filmes = data['results'];
       this.totalPages = data['total_pages'];
       this.totalResults = data['total_results'];
-    }),
-
-    // INICIALIZANDO O  LISTA DE IDIOMAS
-    this.idiomaService.sendGetIdioma().subscribe((data: any[]) => {
-      this.idiomas = data;
     })
 
+  }
+
+  carregaProdutos() {
+    this.filmeService.sendGetPopularRequest(this.pagina).subscribe((data: any[]) => {
+      this.filmes = data['results'];
+      this.totalPages = data['total_pages'];
+      this.totalResults = data['total_results'];
+    })
+  }
+
+  ngOnDestroy() {
+    if (this.refreshEvento !== null) this.refreshEvento.unsubscribe();
   }
 
   // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
   pageChanged(paginaAtual: number) {
-    this.filmeService.sendGetPopularRequest(paginaAtual, this.idiomaSelecionado).subscribe((data: any[]) => {
+    this.filmeService.sendGetPopularRequest(paginaAtual).subscribe((data: any[]) => {
       this.filmes = data['results'];
-    })
-  }
-
-  // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE IDIOMA
-  onChange(idioma: string) {
-    this.filmeService.sendGetPopularRequest(this.pagina, idioma).subscribe((data: any[]) => {
-      this.filmes = data['results'];
-      localStorage.setItem("idioma", idioma);
-      this.idiomaSelecionado = idioma;
     })
   }
 

@@ -18,8 +18,9 @@ export class FilmeService {
   constructor(private httpClient: HttpClient) { }
 
   // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
-  public sendGetPopularRequest(pagina: number, idiomaSelecionado: string) {
-    return this.httpClient.get(this.REST_API_SERVER + this.GET_POPULAR + '?api_key=' + this.REST_API_KEY + '&language=' + idiomaSelecionado + '&page=' + pagina );
+  public sendGetPopularRequest(pagina: number) {
+    this.idioma = localStorage.getItem("idioma");
+    return this.httpClient.get(this.REST_API_SERVER + this.GET_POPULAR + '?api_key=' + this.REST_API_KEY + '&language=' + this.idioma + '&page=' + pagina );
   }
 
   // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ UM FILME COM BASE NO NOME FORNECIDO
