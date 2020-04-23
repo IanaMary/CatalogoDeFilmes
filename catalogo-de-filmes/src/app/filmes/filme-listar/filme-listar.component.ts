@@ -41,7 +41,7 @@ export class FilmeListarComponent {
       this.idiomaSelecionado = "pt-BR";
     }
 
-    this.refreshEvento = EventEmitterService.get('refreshProdutos').subscribe(e => this.carregaProdutos());
+    this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.carregaFilmes());
 
   
     // INICIALIZANDO O  LISTAR FILME COMPONENT
@@ -53,11 +53,9 @@ export class FilmeListarComponent {
 
   }
 
-  carregaProdutos() {
+  carregaFilmes() {
     this.filmeService.sendGetPopularRequest(this.pagina).subscribe((data: any[]) => {
       this.filmes = data['results'];
-      this.totalPages = data['total_pages'];
-      this.totalResults = data['total_results'];
     })
   }
 

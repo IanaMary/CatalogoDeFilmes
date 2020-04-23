@@ -83,6 +83,6 @@ export class TopBarComponent implements OnInit {
       localStorage.setItem("idioma", "es-ES");
       this.translate.use(localStorage.getItem("idioma"));
     }
-    EventEmitterService.get('refreshProdutos').emit(true);
+    EventEmitterService.get('refreshFilmes').emit(true);
   }
 }

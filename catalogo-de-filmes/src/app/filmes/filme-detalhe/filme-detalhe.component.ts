@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../filme.service';
 import { Filme } from '../filme';
 import * as moment from 'moment'; 
+import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
 
 @Component({
   selector: 'app-filme-detalhe',
@@ -13,6 +14,7 @@ import * as moment from 'moment';
 export class FilmeDetalheComponent {
   filme: Filme;
   formato: string;
+  refreshEvento: any = null;
   local: string = localStorage.getItem("idioma");
   
 
@@ -22,8 +24,16 @@ export class FilmeDetalheComponent {
   ) { }
 
   ngOnInit() {
+
+    this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.getFilme(this.route.snapshot.params['id']));
+
     // CAPTURA O ID QUE CHEGOU NA PÁGINA E CHAMA A FUNÇÃO GET_FILME
     this.getFilme(this.route.snapshot.params['id']);
+
+  }
+
+  ngOnDestroy() {
+    if (this.refreshEvento !== null) this.refreshEvento.unsubscribe();
   }
 
   // ATUALIZA A PÁGINA DE DETALHES DO FILME DE ACORDO COM O ID CAPTURADO
