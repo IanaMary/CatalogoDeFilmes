@@ -25,6 +25,7 @@ export class FilmeDetalheComponent {
 
   ngOnInit() {
 
+    // REFRESH NA PAÍGINA DE DETALHES QUANDO O IDIOMA É ALTERADO
     this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.getFilme(this.route.snapshot.params['id']));
 
     // CAPTURA O ID QUE CHEGOU NA PÁGINA E CHAMA A FUNÇÃO GET_FILME

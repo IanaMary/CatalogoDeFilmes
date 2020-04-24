@@ -1,7 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { FilmeService } from '../filme.service';
-import { Idioma } from 'src/app/idiomas/idioma';
-import { IdiomaService } from 'src/app/idiomas/idioma.service';
 import { Filme } from '../filme';
 import {TranslateService} from '@ngx-translate/core';
 import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
@@ -20,27 +18,26 @@ export class FilmeListarComponent {
   pagina: number = 1;
   displayedColumns: string[] = ['title', 'detalhes'];
   idiomaSelecionado: string;
-  idiomas: Idioma[];
 
   refreshEvento: any = null;
 
 
   constructor(
     private filmeService: FilmeService,
-    private idiomaService: IdiomaService,
     public translate: TranslateService
   ) { }
 
 
   ngOnInit() {
 
+    // ALTERA O VALOR DO IDIOMA SELECIONADO DEPENDENDO DO LOCAL STORAGE DO IDIOMA
     if(localStorage.getItem("idioma")) {
-      console.log("aaa");
       this.idiomaSelecionado = localStorage.getItem("idioma");
     }else {
       this.idiomaSelecionado = "pt-BR";
     }
-
+    
+    // REFRESH NA PÁGINA DE LSITAR FILMES QUANDO O IDIOMA É ALTERADO 
     this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.carregaFilmes());
 
   
