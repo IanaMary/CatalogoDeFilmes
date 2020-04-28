@@ -14,24 +14,24 @@ public class SpokenLanguages implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	private String iso6391;
 	private String name;
 	
 	public SpokenLanguages() {}
 	
-	public SpokenLanguages(long id, String iso6391, String name) {
+	public SpokenLanguages(Integer id, String iso6391, String name) {
 		super();
 		this.id = id;
 		this.iso6391 = iso6391;
 		this.name = name;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

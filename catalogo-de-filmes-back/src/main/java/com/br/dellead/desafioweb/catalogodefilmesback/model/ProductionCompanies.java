@@ -14,7 +14,7 @@ public class ProductionCompanies implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	private String logoPath;
 	private String name; 
@@ -22,7 +22,7 @@ public class ProductionCompanies implements Serializable {
 	
 	public ProductionCompanies() {}
 	 
-	public ProductionCompanies(long id, String logoPath, String name, String originCountry) {
+	public ProductionCompanies(Integer id, String logoPath, String name, String originCountry) {
 		super();
 		this.id = id;
 		this.logoPath = logoPath;
@@ -30,11 +30,11 @@ public class ProductionCompanies implements Serializable {
 		this.originCountry = originCountry;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

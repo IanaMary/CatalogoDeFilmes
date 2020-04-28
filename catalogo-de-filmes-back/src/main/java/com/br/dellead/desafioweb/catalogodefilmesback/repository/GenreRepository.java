@@ -1,5 +1,9 @@
 package com.br.dellead.desafioweb.catalogodefilmesback.repository;
 
-public class GenreRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.br.dellead.desafioweb.catalogodefilmesback.model.Genre;
 
-}
+@Repository
+public interface GenreRepository extends JpaRepository<Genre, Integer>{}
+
