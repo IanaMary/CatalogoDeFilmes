@@ -1,11 +1,14 @@
 package com.br.dellead.desafioweb.catalogodefilmesback.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class ProductionCompanies implements Serializable {
@@ -15,6 +18,9 @@ public class ProductionCompanies implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
+	@ManyToMany
+	private List<Filme> filmes;
 	
 	private String logoPath;
 	private String name; 
@@ -28,6 +34,7 @@ public class ProductionCompanies implements Serializable {
 		this.logoPath = logoPath;
 		this.name = name;
 		this.originCountry = originCountry;
+		this.filmes = new ArrayList<>();
 	}
 
 	public Integer getId() {
@@ -38,6 +45,14 @@ public class ProductionCompanies implements Serializable {
 		this.id = id;
 	}
 	
+	public List<Filme> getFilmes() {
+		return filmes;
+	}
+
+	public void setFilmes(List<Filme> filmes) {
+		this.filmes = filmes;
+	}
+
 	public String getLogoPath() {
 		return logoPath;
 	}
