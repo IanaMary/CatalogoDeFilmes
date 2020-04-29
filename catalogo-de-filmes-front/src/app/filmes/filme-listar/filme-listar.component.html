@@ -1,4 +1,5 @@
-<div>
+<!-- TEPLETE DO BACK DA API -->
+<!-- <div>
     <h2 tabindex="0">
         {{ 'CATALOGO.TITULO-LISTAR' | translate }}
     </h2>
@@ -33,4 +34,38 @@
             [maxSize]="5" [rotate]="true" [boundaryLinks]="true">
         </ngb-pagination>
     </div>
-</form>
+</form> -->
+
+
+<!-- TEPLETE DO MEUBACK -->
+<div>
+    <h2 tabindex="0">
+        {{ 'CATALOGO.TITULO-LISTAR' | translate }}
+    </h2>
+    </div>
+    <hr>
+    <form>
+        <input tabindex="0" (keyup)="applyFilter($event)" placeholder=" {{ 'CATALOGO.BUSCAR-FILME' | translate }}">
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th tabindex="0" scope="col">
+                        {{ 'CATALOGO.TITULO-TABELA' | translate }}
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let filme of filmes">
+                    <td tabindex="0">{{filme.title}}</td>
+                    <td>
+                        <button tabindex="0" routerLink="/detalhes-filme/{{filme.id}}">
+                            <i class="material-icons whiteIcon">view_headline</i>
+                            {{ 'CATALOGO.TITULO-BOTAO-DETALHES' | translate }}
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>

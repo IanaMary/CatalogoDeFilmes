@@ -11,7 +11,9 @@ import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
   styleUrls: ['./filme-listar.component.sass']
 })
 
-export class FilmeListarComponent {
+// FilmeListarComponent DO BACK DA API  
+
+/*export class FilmeListarComponent {
   filmes: Filme[];
   totalPages: number;
   totalResults: number;
@@ -77,5 +79,68 @@ export class FilmeListarComponent {
     } else {
       this.pageChanged(1);
     }
+  }
+}*/
+
+
+// FilmeListarComponent DO BACK DA API  
+
+export class FilmeListarComponent {
+  filmes: Filme[];
+  displayedColumns: string[] = ['title', 'detalhes'];
+  idiomaSelecionado: string;
+
+  refreshEvento: any = null;
+
+
+  constructor(
+    private filmeService: FilmeService,
+    public translate: TranslateService
+  ) { }
+
+
+  ngOnInit() {
+
+    // ALTERA O VALOR DO IDIOMA SELECIONADO DEPENDENDO DO LOCAL STORAGE DO IDIOMA
+    if(localStorage.getItem("idioma")) {
+      this.idiomaSelecionado = localStorage.getItem("idioma");
+    }else {
+      this.idiomaSelecionado = "pt-BR";
+    }
+    
+    // REFRESH NA PÁGINA DE LSITAR FILMES QUANDO O IDIOMA É ALTERADO 
+    this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.carregaFilmes());
+
+  
+    // INICIALIZANDO O  LISTAR FILME COMPONENT
+    this.filmeService.sendGetPopularRequestMeuBck().subscribe((data: any[]) => {
+      this.filmes = data;
+    })
+
+  }
+
+  carregaFilmes() {
+    this.filmeService.sendGetPopularRequestMeuBck().subscribe((data: any[]) => {
+      this.filmes = data;
+    })
+  }
+
+  ngOnDestroy() {
+    if (this.refreshEvento !== null) this.refreshEvento.unsubscribe();
+  }
+
+  // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
+  /*pageChanged(paginaAtual: number) {
+    this.filmeService.sendGetPopularRequestMeuBck(paginaAtual).subscribe((data: any[]) => {
+      this.filmes = data['results'];
+    })
+  }*/
+
+  // EXECUTADA PARA ATUALIZAR A PÁGINA DE LISTAR FILME DE ACORDO O NOME DO FILME PASSADO
+  applyFilter(event: Event) {
+    var filterValue = (event.target as HTMLInputElement).value;
+    this.filmeService.sendSearchByNamMeuBck(filterValue).subscribe((data: any[]) => {
+        this.filmes = data;
+    }) 
   }
 }

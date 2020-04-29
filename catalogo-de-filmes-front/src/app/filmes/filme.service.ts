@@ -17,7 +17,8 @@ export class FilmeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
+ // SERVICE DO BACK DA API  
+ /* // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
   public sendGetPopularRequest(pagina: number) {
     this.idioma = localStorage.getItem("idioma");
     return this.httpClient.get(this.REST_API_SERVER + this.GET_POPULAR + '?api_key=' + this.REST_API_KEY + '&language=' + this.idioma + '&page=' + pagina );
@@ -34,6 +35,24 @@ export class FilmeService {
   public sendFindByIdRequest(filmeId: string) {
     this.idioma = localStorage.getItem("idioma");
     return this.httpClient.get(this.REST_API_SERVER + this.GET_DETAILS + filmeId + '?api_key=' + this.REST_API_KEY + '&language=' + this.idioma);
+  } */
+
+   // SERVICE DO MEU BACK  
+
+  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
+  public sendGetPopularRequestMeuBck() {
+    return this.httpClient.get("http://localhost:8080/filmes/");
+  }
+
+  // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ UM FILME COM BASE NO NOME FORNECIDO
+  public sendSearchByNamMeuBck(nomeDoFilme: string) {
+    return this.httpClient.get("http://localhost:8080/filmes/" + nomeDoFilme);
+
+  }
+
+  // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ OS DETALHES DE UM FILME COM BASE NO ID DO FILME FORNECIDO
+  public sendFindByIdRequestMeuBck(filmeId: string) {
+    return this.httpClient.get("http://localhost:8080/filmes/"+ filmeId);
   }
 
 }

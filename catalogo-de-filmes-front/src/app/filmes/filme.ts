@@ -21,7 +21,9 @@ export interface SpokenLanguages {
 }
 
 
-export interface Filme {
+// TIPO DO FILME VINDO DIRETO DA API
+
+/*export interface Filme {
     adult: boolean;
     backdrop_path: string;
     belongs_to_collection: object;
@@ -47,4 +49,17 @@ export interface Filme {
     video: boolean;
     vote_average: number;
     vote_count: number;
+}*/
+
+
+// TIPO DO FILME VINDO DIRETO DO BACK
+
+export interface Filme {
+    backdrop_path: string;
+    id: number;
+    originalTitle: string;
+    title: string;
+    overview: string;
+    release_date: string;
+    genres: Array<Genre>;
 }
