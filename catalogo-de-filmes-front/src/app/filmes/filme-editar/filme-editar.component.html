@@ -1,0 +1,41 @@
+<div *ngIf="filmeEditar">
+  <div>
+    <h2 tabindex="0">
+      NOVO FILME
+    </h2>
+  </div>
+  <form>
+    <div>
+      <samp tabindex="0">
+        {{'CATALOGO.TITULO-FILME' | translate }}
+      </samp>
+      <div class="form-group">
+        <input type="text" id="title" [(ngModel)]="filmeEditar.title" name="title" />
+      </div>
+    </div>
+    <div>
+      <samp tabindex="0">
+        {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
+      </samp>
+      <div class="form-group">
+        <input type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="title" />
+      </div>
+    </div>
+    <div>
+      <samp tabindex="0">
+        {{'CATALOGO.SINOPSE-FILME' | translate }}
+      </samp>
+      <div class="form-group">
+        <input type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="title" />
+      </div>
+    </div>
+    <button tabindex="0"  [routerLink]="['/']" (click)="editarFilme()">
+        <i class="material-icons whiteIcon">check_circle_outline</i>
+        {{'CATALOGO.TITULO-BOTAO-SALVAR' | translate }}
+      </button>
+      <button tabindex="0" [routerLink]="['/']">
+        <i class="material-icons whiteIcon">highlight_off</i>
+        {{'CATALOGO.TITULO-BOTAO-CANCELAR' | translate }}
+      </button>
+  </form>
+</div>

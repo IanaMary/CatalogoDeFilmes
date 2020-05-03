@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Filme } from './filme';
 
 @Injectable({
   providedIn: 'root'
@@ -39,20 +40,36 @@ export class FilmeService {
 
    // SERVICE DO MEU BACK  
 
-  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES
-  public sendGetPopularRequestMeuBck() {
-    return this.httpClient.get("http://localhost:8080/filmes/");
+  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES 
+  // PODE SER PASSADO OU NÃO O NOME DO FILME
+  public listarFilmes(nomeDoFilme: string) {
+    let params = new HttpParams();
+    params = params.append('titulo', nomeDoFilme);
+    return this.httpClient.get("http://localhost:8080/filmes/", {params:params});
   }
 
-  // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ UM FILME COM BASE NO NOME FORNECIDO
-  public sendSearchByNamMeuBck(nomeDoFilme: string) {
-    return this.httpClient.get("http://localhost:8080/filmes/" + nomeDoFilme);
+  public salvarFilme(filme : Filme) {
+    return this.httpClient.post("http://localhost:8080/filmes/salvar", filme);
+  }
 
+  public editarFilme(filmeId : number, filme : Filme) {
+    return this.httpClient.put("http://localhost:8080/filmes/editar/"+ filmeId, filme);
+  }
+
+  public listarGenres() {
+    return this.httpClient.get("http://localhost:8080/genres/");
   }
 
   // FUNÇÃO QUE FAZ UM REQUISIÇÃO À API E TRAZ OS DETALHES DE UM FILME COM BASE NO ID DO FILME FORNECIDO
-  public sendFindByIdRequestMeuBck(filmeId: string) {
-    return this.httpClient.get("http://localhost:8080/filmes/"+ filmeId);
+  public buscarFilmePorId(filmeId: string) {
+    return this.httpClient.get("http://localhost:8080/filmes/detalhes/"+ filmeId);
   }
+
+
+  public deletarFilme(filmeId: string) {
+    return this.httpClient.delete("http://localhost:8080/filmes/deletar/"+filmeId);
+  }
+
+
 
 }

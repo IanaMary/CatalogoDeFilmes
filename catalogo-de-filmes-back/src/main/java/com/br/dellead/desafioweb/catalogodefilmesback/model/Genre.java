@@ -3,14 +3,16 @@ package com.br.dellead.desafioweb.catalogodefilmesback.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Genre implements Serializable{
@@ -18,29 +20,30 @@ public class Genre implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
 	
-	@JsonBackReference
-	@ManyToMany
+	
+
+	@ManyToMany(cascade = {CascadeType.DETACH})
 	private List<Filme> filmes;
 	
 	private String name;
 	
 	public Genre() {}
 
-	public Genre(Integer id, String name) {
+	public Genre(long id, String name) {
 		super();
 		this.id = id;
 		this.filmes = new ArrayList<>();
 		this.name = name;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

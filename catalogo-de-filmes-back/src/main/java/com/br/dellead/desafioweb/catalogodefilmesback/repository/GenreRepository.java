@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import com.br.dellead.desafioweb.catalogodefilmesback.model.Genre;
 
 @Repository
-public interface GenreRepository extends JpaRepository<Genre, Integer>{}
+public interface GenreRepository extends JpaRepository<Genre, Long>{}
 

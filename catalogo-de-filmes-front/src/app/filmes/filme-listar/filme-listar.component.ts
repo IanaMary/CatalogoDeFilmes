@@ -3,6 +3,7 @@ import { FilmeService } from '../filme.service';
 import { Filme } from '../filme';
 import {TranslateService} from '@ngx-translate/core';
 import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,6 @@ import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
   totalPages: number;
   totalResults: number;
   pagina: number = 1;
-  displayedColumns: string[] = ['title', 'detalhes'];
   idiomaSelecionado: string;
 
   refreshEvento: any = null;
@@ -87,7 +87,6 @@ import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
 
 export class FilmeListarComponent {
   filmes: Filme[];
-  displayedColumns: string[] = ['title', 'detalhes'];
   idiomaSelecionado: string;
 
   refreshEvento: any = null;
@@ -95,7 +94,8 @@ export class FilmeListarComponent {
 
   constructor(
     private filmeService: FilmeService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private router: Router
   ) { }
 
 
@@ -109,37 +109,42 @@ export class FilmeListarComponent {
     }
     
     // REFRESH NA PÁGINA DE LSITAR FILMES QUANDO O IDIOMA É ALTERADO 
-    this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.carregaFilmes());
+    this.refreshEvento = EventEmitterService.get('refreshFilmes').subscribe(e => this.listarFilmes());
 
   
     // INICIALIZANDO O  LISTAR FILME COMPONENT
-    this.filmeService.sendGetPopularRequestMeuBck().subscribe((data: any[]) => {
-      this.filmes = data;
-    })
+    this.listarFilmes();
 
   }
 
-  carregaFilmes() {
-    this.filmeService.sendGetPopularRequestMeuBck().subscribe((data: any[]) => {
+  listarFilmes() {
+    this.filmeService.listarFilmes("").subscribe((data: any[]) => {
       this.filmes = data;
     })
   }
+
+
+  deletarFilme(filmeId: string){
+    this.filmeService.deletarFilme(filmeId)
+      .subscribe(
+        response => {
+          console.log(response);
+          EventEmitterService.get('refreshFilmes').emit(true);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
 
   ngOnDestroy() {
     if (this.refreshEvento !== null) this.refreshEvento.unsubscribe();
   }
 
-  // FUNÇÃO QUE É EXECUTADA TODA VEZ QUE HÁ TROCA DE PÁGINA 
-  /*pageChanged(paginaAtual: number) {
-    this.filmeService.sendGetPopularRequestMeuBck(paginaAtual).subscribe((data: any[]) => {
-      this.filmes = data['results'];
-    })
-  }*/
-
   // EXECUTADA PARA ATUALIZAR A PÁGINA DE LISTAR FILME DE ACORDO O NOME DO FILME PASSADO
   applyFilter(event: Event) {
     var filterValue = (event.target as HTMLInputElement).value;
-    this.filmeService.sendSearchByNamMeuBck(filterValue).subscribe((data: any[]) => {
+    this.filmeService.listarFilmes(filterValue).subscribe((data: any[]) => {
         this.filmes = data;
     }) 
   }

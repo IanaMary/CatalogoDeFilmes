@@ -1,3 +1,4 @@
+
 export interface Genre {
     id: number;
     name: string;
@@ -55,11 +56,36 @@ export interface SpokenLanguages {
 // TIPO DO FILME VINDO DIRETO DO BACK
 
 export interface Filme {
-    backdrop_path: string;
     id: number;
     originalTitle: string;
     title: string;
     overview: string;
-    release_date: string;
+    releaseDate: string;
     genres: Array<Genre>;
+    setGenres:(Genre)=>void;
+}
+
+
+
+
+export class FilmeIm implements Filme { 
+    id: number;
+    originalTitle: string;
+    title: string;
+    overview: string;
+    releaseDate: string;
+    genres: Array<Genre>;
+    constructor(originalTitle: string, title: string, overview: string,
+        releaseDate: string) { 
+            this.originalTitle = originalTitle;
+            this.title = title;
+            this.overview = overview;
+            this.releaseDate = releaseDate["year"].toString() + "-" + releaseDate["month"].toString() + "-" + releaseDate["day"].toString(); 
+            this.genres = [];
+    }
+
+    setGenres(genres:Genre):void { 
+            this.genres.push(genres);
+    }
+
 }

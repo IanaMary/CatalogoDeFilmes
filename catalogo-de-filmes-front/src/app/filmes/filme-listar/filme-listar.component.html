@@ -39,33 +39,46 @@
 
 <!-- TEPLETE DO MEUBACK -->
 <div>
-    <h2 tabindex="0">
-        {{ 'CATALOGO.TITULO-LISTAR' | translate }}
-    </h2>
-    </div>
-    <hr>
-    <form>
-        <input tabindex="0" (keyup)="applyFilter($event)" placeholder=" {{ 'CATALOGO.BUSCAR-FILME' | translate }}">
-        <br>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th tabindex="0" scope="col">
-                        {{ 'CATALOGO.TITULO-TABELA' | translate }}
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let filme of filmes">
-                    <td tabindex="0">{{filme.title}}</td>
-                    <td>
-                        <button tabindex="0" routerLink="/detalhes-filme/{{filme.id}}">
-                            <i class="material-icons whiteIcon">view_headline</i>
-                            {{ 'CATALOGO.TITULO-BOTAO-DETALHES' | translate }}
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+   <samp>
+    {{ 'CATALOGO.TITULO-LISTAR' | translate }}
+   </samp>
+</div>
+
+<hr>
+<form>
+    <input tabindex="0" (keyup)="applyFilter($event)" placeholder=" {{ 'CATALOGO.BUSCAR-FILME' | translate }}">
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th tabindex="0" scope="col">
+                    {{ 'CATALOGO.TITULO-TABELA' | translate }}
+                </th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let filme of filmes">
+                <td tabindex="0">{{filme.title}}</td>
+                <td>
+                    <button tabindex="0" routerLink="/detalhes-filme/{{filme.id}}">
+                        <i class="material-icons whiteIcon">view_headline</i>
+                        {{ 'CATALOGO.TITULO-BOTAO-DETALHES' | translate }}
+                    </button>
+                </td>
+                <td>
+                    <button tabindex="0" routerLink="/editar-filme/{{filme.id}}">
+                        <i class="material-icons whiteIcon">create</i>
+                        {{ 'CATALOGO.TITULO-BOTAO-EDITAR' | translate }}
+                    </button>
+                </td>
+                <td>
+                    <button tabindex="0" (click)="deletarFilme(filme.id)">
+                        <i class="material-icons whiteIcon">delete_outline</i>
+                        {{ 'CATALOGO.TITULO-BOTAO-EXCLUIR' | translate }}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

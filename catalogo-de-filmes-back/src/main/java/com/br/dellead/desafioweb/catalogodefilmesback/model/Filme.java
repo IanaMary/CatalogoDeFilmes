@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,8 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Filme implements Serializable{
@@ -20,14 +20,13 @@ public class Filme implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
-	@JsonManagedReference
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "filmes")
+	@JsonIgnore
+	@ManyToMany( mappedBy = "filmes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Genre> genres;
 	
-	private String backdropPath;
 	private String originalTitle;
 	private String overview;
 	private String releaseDate;
@@ -35,23 +34,19 @@ public class Filme implements Serializable{
 	
 	public Filme() {}
 	
-	public Filme(Integer id, String backdropPath, String originalTitle, String overview, String releaseDate,
-			String title) {
-		super();
-		this.id = id;
+	public Filme(String title, String originalTitle, String overview, String releaseDate) {
 		this.genres = new ArrayList<>();
-		this.backdropPath = backdropPath;
 		this.originalTitle = originalTitle;
 		this.overview = overview;
 		this.releaseDate = releaseDate;
 		this.title = title;
 	}
 
-	public Integer getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -61,14 +56,6 @@ public class Filme implements Serializable{
 
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
-	}
-
-	public String getBackdropPath() {
-		return backdropPath;
-	}
-
-	public void setBackdropPath(String backdropPath) {
-		this.backdropPath = backdropPath;
 	}
 
 	public String getOriginalTitle() {
