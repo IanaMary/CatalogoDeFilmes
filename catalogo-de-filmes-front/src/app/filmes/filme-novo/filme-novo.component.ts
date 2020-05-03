@@ -11,7 +11,7 @@ import { EventEmitterService } from 'src/app/idiomas/EventEmitterService';
 @Component({
   selector: 'app-filme-novo',
   templateUrl: './filme-novo.component.html',
-  styleUrls: ['./filme-novo.component.css']
+  styleUrls: ['./filme-novo.component.sass']
 })
 export class FilmeNovoComponent implements OnInit{
 

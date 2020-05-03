@@ -1,5 +1,7 @@
 <!-- TEPLETE DO BACK DA API -->
-<!-- <div *ngIf="filme.backdrop_path">
+
+<!-- <div *ngIf="filme"></div>
+<div *ngIf="filme.backdrop_path">
     <img tabindex="0" src="https://image.tmdb.org/t/p/original{{filme.backdrop_path}}" alt="Smiley face">
 </div>
 <div>
@@ -56,62 +58,65 @@
 <button tabindex="0" [routerLink]="['/']">
     <i class="material-icons whiteIcon">arrow_back</i>
     {{'CATALOGO.TITULO-BOTAO-VOLTAR' | translate }}
-</button> -->
+</button>
+<div *ngIf="filme"></div> -->
 
 
 <!-- TEPLETE DO BACK DA API -->
-<div>
-    <br>
-    <samp tabindex="0">
-        {{'CATALOGO.TITULO-FILME' | translate }}
-    </samp>
-    <ul>
-        <li tabindex="0">
-            {{filme.title}}
-        </li>
-    </ul>
+<div *ngIf="filme">
+    <div>
+        <br>
+        <samp tabindex="0">
+            {{'CATALOGO.TITULO-FILME' | translate }}
+        </samp>
+        <ul>
+            <li tabindex="0">
+                {{filme.title}}
+            </li>
+        </ul>
+    </div>
+    <div>
+        <samp tabindex="0">
+            {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
+        </samp>
+        <ul>
+            <li tabindex="0">
+                {{filme.originalTitle}}
+            </li>
+        </ul>
+    </div>
+    <div>
+        <samp tabindex="0">
+            {{'CATALOGO.CATEGORIA-FILME' | translate }}
+        </samp>
+        <ul>
+            <li tabindex="0" *ngFor="let genre of filme.genres">
+                {{genre.name}}
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="filme.releaseDate">
+        <samp tabindex="0">
+            {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
+        </samp>
+        <ul>
+            <li tabindex="0">
+                {{ filme.releaseDate }}
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="filme.overview">
+        <samp tabindex="0">
+            {{'CATALOGO.SINOPSE-FILME' | translate }}
+        </samp>
+        <ul>
+            <li tabindex="0">
+                {{filme.overview}}
+            </li>
+        </ul>
+    </div>
+    <button tabindex="0" [routerLink]="['/']">
+        <i class="material-icons whiteIcon">arrow_back</i>
+        {{'CATALOGO.TITULO-BOTAO-VOLTAR' | translate }}
+    </button>
 </div>
-<div>
-    <samp tabindex="0">
-        {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
-    </samp>
-    <ul>
-        <li tabindex="0">
-            {{filme.originalTitle}}
-        </li>
-    </ul>
-</div>
-<div>
-    <samp tabindex="0">
-        {{'CATALOGO.CATEGORIA-FILME' | translate }}
-    </samp>
-    <ul>
-        <li tabindex="0" *ngFor="let genre of filme.genres">
-            {{genre.name}}
-        </li>
-    </ul>
-</div>
-<div *ngIf="filme.releaseDate">
-    <samp tabindex="0">
-        {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
-    </samp>
-    <ul>
-        <li tabindex="0">
-            {{ filme.releaseDate }}
-        </li>
-    </ul>
-</div>
-<div *ngIf="filme.overview">
-    <samp tabindex="0">
-        {{'CATALOGO.SINOPSE-FILME' | translate }}
-    </samp>
-    <ul>
-        <li tabindex="0">
-            {{filme.overview}}
-        </li>
-    </ul>
-</div>
-<button tabindex="0" [routerLink]="['/']">
-    <i class="material-icons whiteIcon">arrow_back</i>
-    {{'CATALOGO.TITULO-BOTAO-VOLTAR' | translate }}
-</button>

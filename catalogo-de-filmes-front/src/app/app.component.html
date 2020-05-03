@@ -1,6 +1,8 @@
-<app-top-bar></app-top-bar>
 
 
+<div>
+        <app-top-bar></app-top-bar>
+</div>
 <div>
   <nav class="navbar navbar-expand">
     <div class="navbar-nav mr-auto">
@@ -8,7 +10,7 @@
             <button tabindex="0" [routerLink]="['/novo-filme']">
               <i class="material-icons whiteIcon">control_point_duplicate
                   </i>
-              ADD FILME
+                  {{'CATALOGO.TITULO-BOTAO-NOVO-FILME' | translate }} 
             </button>            
         </li>
       <li class="nav-item">

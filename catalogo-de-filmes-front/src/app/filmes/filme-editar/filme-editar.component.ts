@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-filme-editar',
   templateUrl: './filme-editar.component.html',
-  styleUrls: ['./filme-editar.component.css']
+  styleUrls: ['./filme-editar.component.sass']
 })
 export class FilmeEditarComponent implements OnInit {
   filmeEditar : Filme;
