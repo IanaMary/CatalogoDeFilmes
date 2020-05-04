@@ -10,7 +10,7 @@
         {{'CATALOGO.TITULO-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input type="text" id="title" [(ngModel)]="filmeEditar.title" name="title" />
+        <input tabindex="0" type="text" id="title" [(ngModel)]="filmeEditar.title" name="title" />
       </div>
     </div>
     <div>
@@ -18,7 +18,7 @@
         {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="title" />
+        <input tabindex="0" type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="title" />
       </div>
     </div>
     <div>
@@ -26,7 +26,7 @@
         {{'CATALOGO.SINOPSE-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="title" />
+        <input tabindex="0" type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="title" />
       </div>
     </div>
     <button tabindex="0"  [routerLink]="['/']" (click)="editarFilme()">

@@ -8,14 +8,14 @@
     <samp tabindex="0">
       {{'CATALOGO.TITULO-FILME' | translate }}
     </samp>
-    <input type="text" formControlName="title" required>
+    <input tabindex="0" type="text" formControlName="title" required>
   </label>
   <br>
   <label>
     <samp tabindex="0">
       {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
     </samp>
-    <input type="text" formControlName="originalTitle" required>
+    <input tabindex="0" type="text" formControlName="originalTitle" required>
   </label>
   <br>
   <label>
@@ -24,7 +24,7 @@
     </samp>
     <br>
     <select formControlName="genres" id="genres">
-      <option *ngFor="let genre of genres; let i = index" [ngValue]="genres[i]">
+      <option tabindex="0" *ngFor="let genre of genres; let i = index" [ngValue]="genres[i]">
         {{genres[i].name}}
       </option>
     </select>
@@ -35,7 +35,7 @@
       {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
     </samp>
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="yyyy-mm-dd" formControlName="releaseDate" ngbDatepicker
+      <input tabindex="0" type="text" class="form-control" placeholder="yyyy-mm-dd" formControlName="releaseDate" ngbDatepicker
         #d="ngbDatepicker">
       <div class="input-group-btn">
         <button tabindex="0" (click)="d.toggle()">
@@ -51,7 +51,7 @@
     <samp tabindex="0">
       {{'CATALOGO.SINOPSE-FILME' | translate }}
     </samp>
-    <input formControlName="overview" required>
+    <input tabindex="0" formControlName="overview" required>
   </label>
   <br>
   <button type="submit" tabindex="0" [routerLink]="['/']" type="submit" (click)="salvarFilme()" [disabled]="!filme.valid">

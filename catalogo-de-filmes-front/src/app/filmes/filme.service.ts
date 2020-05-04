@@ -39,9 +39,6 @@ export class FilmeService {
   } */
 
    // SERVICE DO MEU BACK  
-
-  // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES 
-  // PODE SER PASSADO OU NÃO O NOME DO FILME
   public listarFilmes(nomeDoFilme: string) {
     let params = new HttpParams();
     params = params.append('titulo', nomeDoFilme);
