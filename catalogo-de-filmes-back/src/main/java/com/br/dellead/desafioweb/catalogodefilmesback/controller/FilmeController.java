@@ -1,5 +1,6 @@
 package com.br.dellead.desafioweb.catalogodefilmesback.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.dellead.desafioweb.catalogodefilmesback.model.Filme;
+import com.br.dellead.desafioweb.catalogodefilmesback.model.Genre;
 import com.br.dellead.desafioweb.catalogodefilmesback.service.FilmeService;
 
 @CrossOrigin("http://localhost:4200")
@@ -39,6 +41,10 @@ public class FilmeController {
 	public ResponseEntity<?> salvarFilme(@RequestBody Filme filme) {
 		Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
 								filme.getOverview(), filme.getReleaseDate());
+		for (Genre genre : filme.getGenresT()) {
+			genre.setFilmes(new ArrayList<Filme>()); 
+			genre.getFilmes().add(filme);
+		}
 		_filme.setGenres(filme.getGenresT());
 		 this.filmeService.salvarFilme(_filme);
 	     return new ResponseEntity<>(_filme, HttpStatus.CREATED);

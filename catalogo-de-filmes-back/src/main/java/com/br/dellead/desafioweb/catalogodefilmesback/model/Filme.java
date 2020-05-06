@@ -28,7 +28,7 @@ public class Filme implements Serializable{
 	private List<Genre> genresT;
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "filmes", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "filmes", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Genre> genres;
 	
 	private String originalTitle;
