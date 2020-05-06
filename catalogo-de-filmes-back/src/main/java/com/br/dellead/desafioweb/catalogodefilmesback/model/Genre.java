@@ -20,12 +20,10 @@ public class Genre implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	
-
-	@ManyToMany(cascade = {CascadeType.DETACH})
+	@ManyToMany
 	private List<Filme> filmes;
 	
 	private String name;

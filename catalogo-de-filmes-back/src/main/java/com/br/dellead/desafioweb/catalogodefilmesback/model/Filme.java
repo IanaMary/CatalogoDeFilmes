@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,11 +21,14 @@ public class Filme implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Transient
+	private List<Genre> genresT;
+	
 	@JsonIgnore
-	@ManyToMany( mappedBy = "filmes", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "filmes", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Genre> genres;
 	
 	private String originalTitle;
@@ -36,6 +40,7 @@ public class Filme implements Serializable{
 	
 	public Filme(String title, String originalTitle, String overview, String releaseDate) {
 		this.genres = new ArrayList<>();
+		this.genresT = new ArrayList<>();
 		this.originalTitle = originalTitle;
 		this.overview = overview;
 		this.releaseDate = releaseDate;
@@ -56,6 +61,14 @@ public class Filme implements Serializable{
 
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
+	}
+
+	public List<Genre> getGenresT() {
+		return genresT;
+	}
+
+	public void setGenresT(List<Genre> genresT) {
+		this.genresT = genresT;
 	}
 
 	public String getOriginalTitle() {

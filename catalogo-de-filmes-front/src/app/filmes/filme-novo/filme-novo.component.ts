@@ -50,6 +50,7 @@ export class FilmeNovoComponent implements OnInit{
     let novoFilme = new FilmeIm( this.filme.value['originalTitle'],  this.filme.value['originalTitle'], 
                            this.filme.value['overview'], this.filme.value['releaseDate']);
     novoFilme.setGenres(this.filme.value['genres']);
+    console.log(this.filme.value['genres']);
     this.filmeService.salvarFilme(novoFilme).subscribe(
       response => {
         console.log(response);

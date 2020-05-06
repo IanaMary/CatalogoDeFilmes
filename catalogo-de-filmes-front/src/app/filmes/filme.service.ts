@@ -46,6 +46,7 @@ export class FilmeService {
   }
 
   public salvarFilme(filme : Filme) {
+    console.log(filme);
     return this.httpClient.post("http://localhost:8080/filmes/salvar", filme);
   }
 

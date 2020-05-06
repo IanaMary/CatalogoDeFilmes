@@ -46,12 +46,10 @@ export class FilmeEditarComponent implements OnInit {
 
 
   editarFilme() {
-    this.submitted =  true;
     this.filmeService.editarFilme(this.filmeEditar.id, this.filmeEditar)
       .subscribe(
         response => {
           console.log(response);
-          this.message = 'The tutorial was updated successfully!';
         },
         error => {
           console.log(error);
