@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.dellead.desafioweb.catalogodefilmesback.model.Filme;
-import com.br.dellead.desafioweb.catalogodefilmesback.model.Genre;
 import com.br.dellead.desafioweb.catalogodefilmesback.repository.FilmeRepository;
-import com.br.dellead.desafioweb.catalogodefilmesback.repository.GenreRepository;
 import com.br.dellead.desafioweb.catalogodefilmesback.service.FilmeService;
 
 @Service
@@ -17,9 +15,6 @@ public class FIlmeServiceImpl implements FilmeService {
 	
     @Autowired
 	private FilmeRepository filmeRepository;
-    
-    @Autowired
-	private GenreRepository genreRepository;
 	
 	@Override
 	public Optional<Filme> buscarPorId(long id) {
@@ -32,8 +27,8 @@ public class FIlmeServiceImpl implements FilmeService {
 	}
 	
 	@Override
-	public void salvarFilme(Filme filme) {
-	   filmeRepository.saveAndFlush(filme);
+	public void salvarFilme(Filme filme) { 
+		filmeRepository.save(filme);
 	}
 	
 	@Override

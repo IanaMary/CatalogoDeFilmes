@@ -39,6 +39,7 @@ public class FilmeController {
 	public ResponseEntity<?> salvarFilme(@RequestBody Filme filme) {
 		Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
 								filme.getOverview(), filme.getReleaseDate());
+		_filme.setGenres(filme.getGenresT());
 		 this.filmeService.salvarFilme(_filme);
 	     return new ResponseEntity<>(_filme, HttpStatus.CREATED);
 	}
