@@ -119,6 +119,7 @@ export class FilmeListarComponent {
 
   listarFilmes() {
     this.filmeService.listarFilmes("").subscribe((data: any[]) => {
+      console.log(data)
       this.filmes = data;
     })
   }

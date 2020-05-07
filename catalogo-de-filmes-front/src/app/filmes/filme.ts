@@ -90,10 +90,12 @@ export class FilmeIm implements Filme {
             this.overview = overview;
             this.releaseDate = releaseDate["year"].toString() + "-" + releaseDate["month"].toString() + "-" + releaseDate["day"].toString(); 
             this.genresT = [];
+            this.genres = [];
     }
 
     setGenres(genres:Genre):void { 
             this.genresT.push(genres);
+            this.genres.push(genres);
     }
 
 }

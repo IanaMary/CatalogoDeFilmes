@@ -12,7 +12,7 @@ public interface FilmeService {
 	
 	void deletarFilme(long id);
 	
-	void salvarFilme(Filme filme);
+	Filme salvarFilme(Filme filme);
 	
 	void editarFilme(Filme filme);
 	

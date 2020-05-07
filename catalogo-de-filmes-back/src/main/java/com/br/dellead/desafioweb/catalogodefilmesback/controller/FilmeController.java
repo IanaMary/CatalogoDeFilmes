@@ -1,6 +1,5 @@
 package com.br.dellead.desafioweb.catalogodefilmesback.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.dellead.desafioweb.catalogodefilmesback.dto.FilmeDTO;
+import com.br.dellead.desafioweb.catalogodefilmesback.dto.FilmeRespostaDTO;
 import com.br.dellead.desafioweb.catalogodefilmesback.model.Filme;
-import com.br.dellead.desafioweb.catalogodefilmesback.model.Genre;
 import com.br.dellead.desafioweb.catalogodefilmesback.service.FilmeService;
 
 @CrossOrigin("http://localhost:4200")
@@ -37,18 +37,20 @@ public class FilmeController {
 	}
 	
 
-	@PostMapping(path = {"/salvar"})
+	/*@PostMapping(path = {"/salvar"})
 	public ResponseEntity<?> salvarFilme(@RequestBody Filme filme) {
-		Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
+		/*Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
 								filme.getOverview(), filme.getReleaseDate());
-		for (Genre genre : filme.getGenresT()) {
-			genre.setFilmes(new ArrayList<Filme>()); 
-			genre.getFilmes().add(filme);
-		}
 		_filme.setGenres(filme.getGenresT());
-		 this.filmeService.salvarFilme(_filme);
-	     return new ResponseEntity<>(_filme, HttpStatus.CREATED);
-	}
+		this.filmeService.salvarFilme(_filme);
+	    return new ResponseEntity<>(_filme, HttpStatus.CREATED);
+	}*/
+	
+	@PostMapping
+    public ResponseEntity<FilmeRespostaDTO> salvar(@RequestBody FilmeDTO dto) {
+        Filme filme = this.filmeService.salvarFilme(dto.transformaParaObjeto());
+        return new ResponseEntity<>(FilmeRespostaDTO.transformaEmDTO(filme), HttpStatus.CREATED);
+    }
 	
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editarFilme(@PathVariable("id") long id, @RequestBody Filme filme) {
@@ -73,9 +75,15 @@ public class FilmeController {
 		if(titulo != null && titulo != "") {
 			 filmes = this.filmeService.buscarPorTitulo(titulo);
 		}
+		
 		else{
 			filmes = this.filmeService.listar();
 		}
+		
+		/*for(Filme filme : filmes) {
+			filme.setGenresT(filme.getGenres());
+		}*/
+	
 		
 		return ResponseEntity.ok().body(filmes);
 	}

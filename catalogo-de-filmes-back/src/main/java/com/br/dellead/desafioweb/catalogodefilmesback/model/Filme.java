@@ -10,10 +10,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Filme implements Serializable{
@@ -27,8 +31,12 @@ public class Filme implements Serializable{
 	@Transient
 	private List<Genre> genresT;
 	
-	@JsonIgnore
-	@ManyToMany(mappedBy = "filmes", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JsonBackReference
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@JoinTable(
+			  name = "genre_filmes",
+			  joinColumns = @JoinColumn(name = "filmes_id"),
+			  inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private List<Genre> genres;
 	
 	private String originalTitle;

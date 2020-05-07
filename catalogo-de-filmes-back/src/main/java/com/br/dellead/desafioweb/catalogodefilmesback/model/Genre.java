@@ -10,9 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Genre implements Serializable{
@@ -23,16 +26,14 @@ public class Genre implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToMany
+    @ManyToMany
 	private List<Filme> filmes;
 	
 	private String name;
 	
 	public Genre() {}
 
-	public Genre(long id, String name) {
-		super();
-		this.id = id;
+	public Genre(String name) {
 		this.filmes = new ArrayList<>();
 		this.name = name;
 	}
