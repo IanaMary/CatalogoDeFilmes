@@ -37,20 +37,14 @@ public class FilmeController {
 	}
 	
 
-	/*@PostMapping(path = {"/salvar"})
+	@PostMapping(path = {"/salvar"})
 	public ResponseEntity<?> salvarFilme(@RequestBody Filme filme) {
-		/*Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
+		Filme _filme = new Filme(filme.getTitle(), filme.getOriginalTitle(),
 								filme.getOverview(), filme.getReleaseDate());
-		_filme.setGenres(filme.getGenresT());
+		_filme.setGenres(filme.getGenres());
 		this.filmeService.salvarFilme(_filme);
 	    return new ResponseEntity<>(_filme, HttpStatus.CREATED);
-	}*/
-	
-	@PostMapping
-    public ResponseEntity<FilmeRespostaDTO> salvar(@RequestBody FilmeDTO dto) {
-        Filme filme = this.filmeService.salvarFilme(dto.transformaParaObjeto());
-        return new ResponseEntity<>(FilmeRespostaDTO.transformaEmDTO(filme), HttpStatus.CREATED);
-    }
+	}
 	
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<?> editarFilme(@PathVariable("id") long id, @RequestBody Filme filme) {
@@ -60,6 +54,7 @@ public class FilmeController {
 	    	_filme.setTitle(filme.getTitle());
 	    	_filme.setOriginalTitle(filme.getOriginalTitle());
 	    	_filme.setOverview(filme.getOverview());
+	    	_filme.setGenres(filme.getGenres());
 	    	//_filme.setReleaseDate(filme.getReleaseDate());
 	    	this.filmeService.editarFilme(_filme);
 	    	return new ResponseEntity<>(_filme, HttpStatus.OK);
@@ -80,11 +75,6 @@ public class FilmeController {
 			filmes = this.filmeService.listar();
 		}
 		
-		/*for(Filme filme : filmes) {
-			filme.setGenresT(filme.getGenres());
-		}*/
-	
-		
 		return ResponseEntity.ok().body(filmes);
 	}
 	
@@ -98,8 +88,5 @@ public class FilmeController {
 	    	return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 	    }
 	}
-	
-	
-	
 	
 }

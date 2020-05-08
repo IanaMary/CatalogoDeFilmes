@@ -23,11 +23,17 @@
       {{'CATALOGO.CATEGORIA-FILME' | translate }}
     </samp>
     <br>
-    <select formControlName="genres" id="genres">
+   <!-- <select formControlName="genres" id="genres">
       <option tabindex="0" *ngFor="let genre of genres; let i = index" [ngValue]="genres[i]">
         {{genres[i].name}}
       </option>
-    </select>
+    </select>* -->
+    <mat-form-field>
+      <mat-label>Toppings</mat-label>
+      <mat-select formControlName="genres" multiple>
+        <mat-option *ngFor="let genre of genres" [value]="genre">{{genre.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </label>
   <br>
   <label>

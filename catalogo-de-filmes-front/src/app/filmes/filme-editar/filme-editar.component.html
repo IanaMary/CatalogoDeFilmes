@@ -5,6 +5,13 @@
     </h2>
   </div>
   <form>
+    <hr>
+    <div>
+        <ng-select [multiple]="true" name="genres" [(ngModel)]="filmeEditar.genres">
+            <ng-option *ngFor="let genre of genres" [value]="genre">{{genre.name}}</ng-option>
+        </ng-select>
+    </div>
+    <hr>
     <div>
       <samp tabindex="0">
         {{'CATALOGO.TITULO-FILME' | translate }}
@@ -18,7 +25,7 @@
         {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input tabindex="0" type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="title" />
+        <input tabindex="0" type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="originalTitle" />
       </div>
     </div>
     <div>
@@ -26,7 +33,7 @@
         {{'CATALOGO.SINOPSE-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input tabindex="0" type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="title" />
+        <input tabindex="0" type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="overview" />
       </div>
     </div>
     <button tabindex="0"  [routerLink]="['/']" (click)="editarFilme()">

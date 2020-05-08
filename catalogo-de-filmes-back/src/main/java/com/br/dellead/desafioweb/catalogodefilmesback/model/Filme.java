@@ -28,11 +28,7 @@ public class Filme implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Transient
-	private List<Genre> genresT;
-	
-	@JsonBackReference
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@ManyToMany
 	@JoinTable(
 			  name = "genre_filmes",
 			  joinColumns = @JoinColumn(name = "filmes_id"),
@@ -48,7 +44,6 @@ public class Filme implements Serializable{
 	
 	public Filme(String title, String originalTitle, String overview, String releaseDate) {
 		this.genres = new ArrayList<>();
-		this.genresT = new ArrayList<>();
 		this.originalTitle = originalTitle;
 		this.overview = overview;
 		this.releaseDate = releaseDate;
@@ -70,15 +65,7 @@ public class Filme implements Serializable{
 	public void setGenres(List<Genre> genres) {
 		this.genres = genres;
 	}
-
-	public List<Genre> getGenresT() {
-		return genresT;
-	}
-
-	public void setGenresT(List<Genre> genresT) {
-		this.genresT = genresT;
-	}
-
+	
 	public String getOriginalTitle() {
 		return originalTitle;
 	}

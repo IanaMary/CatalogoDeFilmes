@@ -69,7 +69,7 @@ export interface Filme {
     releaseDate: string;
     genresT: Array<Genre>;
     genres: Array<Genre>;
-    setGenres:(Genre)=>void;
+    setGenres:([])=>void;
 }
 
 
@@ -93,9 +93,10 @@ export class FilmeIm implements Filme {
             this.genres = [];
     }
 
-    setGenres(genres:Genre):void { 
-            this.genresT.push(genres);
-            this.genres.push(genres);
+    setGenres(genres:Genre[]):void { 
+            for(let i = 0; i < genres.length; i++) {
+                this.genres.push(genres[i]);
+            }
     }
 
 }

@@ -16,6 +16,12 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FilmeNovoComponent } from './filmes/filme-novo/filme-novo.component';
 import { FilmeEditarComponent } from './filmes/filme-editar/filme-editar.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {MatSelectModule} from '@angular/material/select';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+
+
 
 
 // AoT requires an exported function for factories
@@ -32,9 +38,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgxPaginationModule,
     NgbModule,
     FormsModule,
+    NgSelectModule,
+    NgOptionHighlightModule,
+    MatSelectModule,
     ReactiveFormsModule,
     HttpClientModule,
     MomentModule,
+    NgMultiSelectDropDownModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

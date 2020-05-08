@@ -27,8 +27,8 @@ public class FIlmeServiceImpl implements FilmeService {
 	}
 	
 	@Override
-	public Filme salvarFilme(Filme filme) { 
-		return filmeRepository.save(filme);
+	public void salvarFilme(Filme filme) { 
+		filmeRepository.save(filme);
 	}
 	
 	@Override

@@ -79,7 +79,6 @@ export class FilmeDetalheComponent {
   // ATUALIZA A PÁGINA DE DETALHES DO FILME DE ACORDO COM O ID CAPTURADO
   getFilme(id: string) {
     this.filmeService.buscarFilmePorId(id).subscribe((data: Filme) => {  
-      console.log(data.genres);
       moment.locale(this.local); 
       data.releaseDate = moment(data.releaseDate).format('L');
       this.filme = data;
