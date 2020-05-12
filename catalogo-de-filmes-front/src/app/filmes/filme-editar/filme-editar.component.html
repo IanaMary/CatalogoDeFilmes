@@ -1,48 +1,64 @@
 <div *ngIf="filmeEditar">
   <div>
     <h2 tabindex="0">
-        {{'CATALOGO.TITULO-EDITAR-FILME' | translate }}
+      {{'CATALOGO.TITULO-EDITAR-FILME' | translate }}
     </h2>
   </div>
-  <form>
-    <hr>
-    <div>
-        <ng-select [multiple]="true" name="genres" [(ngModel)]="filmeEditar.genres">
-            <ng-option *ngFor="let genre of genres" [value]="genre">{{genre.name}}</ng-option>
-        </ng-select>
-    </div>
-    <hr>
+  <form [formGroup]="filme">
+    <br>
     <div>
       <samp tabindex="0">
         {{'CATALOGO.TITULO-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input tabindex="0" type="text" id="title" [(ngModel)]="filmeEditar.title" name="title" />
+        <input formControlName="title" tabindex="0" type="text" id="title" [(ngModel)]="filmeEditar.title" name="title" />
       </div>
     </div>
+    <br>
     <div>
       <samp tabindex="0">
         {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input tabindex="0" type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle" name="originalTitle" />
+        <input formControlName="originalTitle" tabindex="0" type="text" id="originalTitle" [(ngModel)]="filmeEditar.originalTitle"
+          name="originalTitle" />
       </div>
     </div>
+    <br>
+    <div>
+      <samp tabindex="0" >
+        {{'CATALOGO.CATEGORIA-FILME' | translate }}
+      </samp>
+      <div>
+        <ng-select formControlName="genres" tabindex="0" [items]="genres" bindLabel="name" placeholder="escolha as categorias" appendTo="body" multiple="true"
+          name="genres" [(ngModel)]="filmeEditar.genres">
+        </ng-select>
+      </div>
+    </div>
+   <!-- <br>
+    <div>
+      <samp tabindex="0">
+        {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
+      </samp>
+      <input  formControlName="releaseDate"[ngModel]="filmeEditar.releaseDate | date:'yyyy-MM-dd'" (ngModelChange)="filmeEditar.releaseDate = $event" type="date" name="releaseDate"/>
+    </div> --> 
+    <br> 
     <div>
       <samp tabindex="0">
         {{'CATALOGO.SINOPSE-FILME' | translate }}
       </samp>
       <div class="form-group">
-        <input tabindex="0" type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="overview" />
+        <input formControlName="overview" tabindex="0" type="text" id="overview" [(ngModel)]="filmeEditar.overview" name="overview" />
       </div>
     </div>
-    <button tabindex="0"  [routerLink]="['/']" (click)="editarFilme()">
-        <i class="material-icons whiteIcon">check_circle_outline</i>
-        {{'CATALOGO.TITULO-BOTAO-SALVAR' | translate }}
-      </button>
-      <button tabindex="0" [routerLink]="['/']">
-        <i class="material-icons whiteIcon">highlight_off</i>
-        {{'CATALOGO.TITULO-BOTAO-CANCELAR' | translate }}
-      </button>
+    <br>
+    <button tabindex="0" [routerLink]="['/']" (click)="editarFilme()" type="submit"  [disabled]="!filme.valid">
+      <i class="material-icons whiteIcon">check_circle_outline</i>
+      {{'CATALOGO.TITULO-BOTAO-SALVAR' | translate }}
+    </button>
+    <button tabindex="0" [routerLink]="['/']">
+      <i class="material-icons whiteIcon">highlight_off</i>
+      {{'CATALOGO.TITULO-BOTAO-CANCELAR' | translate }}
+    </button>
   </form>
 </div>

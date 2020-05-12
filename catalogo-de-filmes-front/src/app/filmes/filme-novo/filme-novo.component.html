@@ -1,66 +1,52 @@
 <div>
   <h2 tabindex="0">
-      {{'CATALOGO.TITULO-NOVO-FILME' | translate }}
+    {{'CATALOGO.TITULO-NOVO-FILME' | translate }}
   </h2>
 </div>
 <form [formGroup]="filme">
-  <label class="FormsModule" >
+  <br>
+  <div>
     <samp tabindex="0">
       {{'CATALOGO.TITULO-FILME' | translate }}
     </samp>
-    <input tabindex="0" type="text" formControlName="title" required>
-  </label>
+    <input tabindex="0" type="text" formControlName="title">
+  </div>
   <br>
-  <label>
+  <div>
     <samp tabindex="0">
       {{'CATALOGO.TITULO-ORIGINAL-FILME' | translate }}
     </samp>
-    <input tabindex="0" type="text" formControlName="originalTitle" required>
-  </label>
+    <input tabindex="0" type="text" formControlName="originalTitle" >
+  </div>
   <br>
-  <label>
+  <div>
     <samp tabindex="0">
       {{'CATALOGO.CATEGORIA-FILME' | translate }}
     </samp>
     <br>
-   <!-- <select formControlName="genres" id="genres">
-      <option tabindex="0" *ngFor="let genre of genres; let i = index" [ngValue]="genres[i]">
-        {{genres[i].name}}
-      </option>
-    </select>* -->
-    <mat-form-field>
-      <mat-label>Toppings</mat-label>
-      <mat-select formControlName="genres" multiple>
-        <mat-option *ngFor="let genre of genres" [value]="genre">{{genre.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </label>
+    <div>
+      <ng-select tabindex="0" [items]="genres" formControlName="genres" bindLabel="name" placeholder="Select item" appendTo="body"
+        multiple="true" name="genres">
+      </ng-select>
+    </div>
+  </div>
   <br>
-  <label>
+  <div>
     <samp tabindex="0">
       {{'CATALOGO.DATA-LANCAMENTO-FILME' | translate }}
     </samp>
-    <div class="input-group">
-      <input tabindex="0" type="text" class="form-control" placeholder="yyyy-mm-dd" formControlName="releaseDate" ngbDatepicker
-        #d="ngbDatepicker">
-      <div class="input-group-btn">
-        <button tabindex="0" (click)="d.toggle()">
-          <i class="material-icons whiteIcon">insert_invitation
-          </i>
-          ADD DATA
-        </button>
-      </div>
-    </div>
-  </label>
+    <input  tabindex="0" formControlName="releaseDate"  type="date" ng-init="model=(releaseDate | date:'yyyy-MM-dd')"/>
+  </div> 
   <br>
-  <label>
+  <div>
     <samp tabindex="0">
       {{'CATALOGO.SINOPSE-FILME' | translate }}
     </samp>
-    <input tabindex="0" formControlName="overview" required>
-  </label>
+    <input tabindex="0" formControlName="overview" type="text">
+  </div>
   <br>
-  <button type="submit" tabindex="0" [routerLink]="['/']" type="submit" (click)="salvarFilme()" [disabled]="!filme.valid">
+  <button type="submit" tabindex="0" [routerLink]="['/']" type="submit" (click)="salvarFilme()"
+    [disabled]="!filme.valid">
     <i class="material-icons whiteIcon">check_circle_outline</i>
     {{'CATALOGO.TITULO-BOTAO-SALVAR' | translate }}
   </button>

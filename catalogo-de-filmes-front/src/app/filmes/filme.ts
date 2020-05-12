@@ -1,3 +1,6 @@
+import { DatePipe } from '@angular/common';
+import { DateFormatPipe } from 'angular2-moment';
+
 export interface ProductionCompanies {
     id: number,
     logo_path: string;
@@ -66,13 +69,11 @@ export interface Filme {
     originalTitle: string;
     title: string;
     overview: string;
-    releaseDate: string;
+    releaseDate: Date;
     genresT: Array<Genre>;
     genres: Array<Genre>;
     setGenres:([])=>void;
 }
-
-
 
 
 export class FilmeIm implements Filme { 
@@ -80,16 +81,16 @@ export class FilmeIm implements Filme {
     originalTitle: string;
     title: string;
     overview: string;
-    releaseDate: string;
+    releaseDate: Date;
     genresT: Array<Genre>;
     genres: Array<Genre>;
+    
     constructor(originalTitle: string, title: string, overview: string,
-        releaseDate: string) { 
+        releaseDate: Date) { 
             this.originalTitle = originalTitle;
             this.title = title;
             this.overview = overview;
-            this.releaseDate = releaseDate["year"].toString() + "-" + releaseDate["month"].toString() + "-" + releaseDate["day"].toString(); 
-            this.genresT = [];
+            this.releaseDate = new Date(releaseDate);
             this.genres = [];
     }
 
@@ -98,5 +99,4 @@ export class FilmeIm implements Filme {
                 this.genres.push(genres[i]);
             }
     }
-
 }

@@ -16,7 +16,9 @@ export class FilmeService {
   private REST_API_KEY = "dbdeae6e3e057f601031883c973b7727";
   idioma :  string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient
+    ) { }
 
  // SERVICE DO BACK DA API  
  /* // FUNÇÃO QUE FAZ UMA REQUISIÇÃO À API E TRAZ TODOS OS FILMES POPULARES

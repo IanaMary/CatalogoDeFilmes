@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.dellead.desafioweb.catalogodefilmesback.dto.FilmeDTO;
-import com.br.dellead.desafioweb.catalogodefilmesback.dto.FilmeRespostaDTO;
 import com.br.dellead.desafioweb.catalogodefilmesback.model.Filme;
 import com.br.dellead.desafioweb.catalogodefilmesback.service.FilmeService;
 
@@ -55,7 +53,7 @@ public class FilmeController {
 	    	_filme.setOriginalTitle(filme.getOriginalTitle());
 	    	_filme.setOverview(filme.getOverview());
 	    	_filme.setGenres(filme.getGenres());
-	    	//_filme.setReleaseDate(filme.getReleaseDate());
+	    	_filme.setReleaseDate(filme.getReleaseDate());
 	    	this.filmeService.editarFilme(_filme);
 	    	return new ResponseEntity<>(_filme, HttpStatus.OK);
 

@@ -2,22 +2,16 @@ package com.br.dellead.desafioweb.catalogodefilmesback.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Filme implements Serializable{
@@ -37,12 +31,12 @@ public class Filme implements Serializable{
 	
 	private String originalTitle;
 	private String overview;
-	private String releaseDate;
+	private Date releaseDate;
 	private String title;
 	
 	public Filme() {}
 	
-	public Filme(String title, String originalTitle, String overview, String releaseDate) {
+	public Filme(String title, String originalTitle, String overview, Date releaseDate) {
 		this.genres = new ArrayList<>();
 		this.originalTitle = originalTitle;
 		this.overview = overview;
@@ -82,11 +76,11 @@ public class Filme implements Serializable{
 		this.overview = overview;
 	}
 
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
